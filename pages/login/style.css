@@ -1,6 +1,7 @@
 * {
     padding: 0;
     margin: 0;
+    font-family: 'Courier New', Courier, monospace;
 }
 
 .container {
@@ -19,6 +20,96 @@
     height: 500px;
     border-radius: 10px;
     background-color: #ffffff;
+}
+
+.content-front {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.content-gap {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.content-select {
+    display: flex;
+    justify-content: space-between;
+    width: 320px;
+    height: 50px;
+    background-color: #f0eff2;
+    padding: 4px;
+    border-radius: 8px;
+    border: 1px solid rgb(226, 226, 226);
+}
+
+.select{
+    width: 49%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.select:hover{
+    background-color: #a7a7a71f;
+
+}
+
+.active {
+    color: black;
+    background-color: #ffffff;
+    font-weight: 600;
+}
+
+.title {
+    font-size: 27px;
+    font-weight: bold;
+}
+
+.subTitle {
+    color: #9b9b9b;
+}
+
+.content-input {}
+
+.input-title {
+    color: rgb(61, 61, 61);
+    font-weight: 600;
+    margin-top: 20px;
+}
+
+.custom-input {
+    width: 300px;
+    height: 40px;
+    border-radius: 10px;
+    padding-left: 15px;
+    border: 1px solid #7c7c7c;
+    font-weight: 600;
+    outline: none;
+    margin-top: 3px;
+}
+
+.btn-login {
+    width: 320px;
+    height: 38px;
+    border-radius: 20px;
+    font-weight: 600;
+    background-color: #7c96e2;
+    cursor: pointer;
+    border: none;
+    margin-top: 10px;
+}
+
+.btn-login:hover {
+    background-color: #6c83c7;
+    color: #ffffff;
 }
 
 .content-back {
@@ -51,18 +142,18 @@
 .img-cloud-one {
     position: absolute;
     top: -70px;
-    right: -70px;
-    width: 200px;
-    height: 180px;
+    right: -100px;
+    width: 250px;
+    height: 230px;
     animation: boil 5s infinite;
 }
 
 .img-cloud-two {
     position: absolute;
-    bottom:20px;
+    bottom: 20px;
     left: -55px;
     width: 250px;
-    height: 230px;    
+    height: 230px;
     animation: boil 5s infinite;
 
 }
