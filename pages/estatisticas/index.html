@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Estatísticas</title>
-        <link rel="stylesheet" href="style.css">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estatísticas</title>
+    <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
     <div class="display">
         <section class="ranking-section">
@@ -17,11 +19,15 @@
                 </div>
             </div>
         </section>
+
         <section class="logs-section">
+            <div class="title">
+                <h2>Histórico de partidas</h2>
+            </div>
+            <div class="subTitle">
+                Acompanhe o histórico de partidas de todos os jogadores
+            </div>
             <div class="logs-display">
-                <div class="title">
-                    <h2>Histórico de partidas</h2>
-                </div>
                 <div class="content">
                     <table>
                         <thead>
@@ -44,7 +50,8 @@
             </div>
         </section>
     </div>
-    <script type="module"  src="load-ranking.js"></script>
+    <script type="module" src="load-ranking.js"></script>
     <script type="module" src="load-logs.js"></script>
 </body>
+
 </html>
