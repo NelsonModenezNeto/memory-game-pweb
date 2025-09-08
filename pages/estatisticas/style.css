@@ -105,3 +105,57 @@ body {
 .avatar-img {
     width: 100%;
 }
+
+.logs-display .title {
+    height: 10%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.logs-display {
+    width: 90%;
+    height: 70%;
+    background-color: rgb(216, 216, 216);
+    border-radius: 10px;
+}
+
+.logs-display .content {
+    overflow: scroll;
+    height: 90%;
+}
+
+.logs-display table {
+    width: 100%;
+}
+
+.logs-display table, .logs-display table td, .logs-display table th, .logs-display table, .logs-display tr {
+    border: 1px solid black;
+    border-collapse: collapse;
+    padding: 5px 10px;
+}
+
+.logs-display table td, .logs-display table tr {
+    height: 40px;
+    text-align: center;
+}
+
+.logs-display .content table thead th {
+    position: sticky;
+    top: 0;
+    background-color: #937ce7;
+}
+
+.result-victory {
+    background-color: rgb(124, 203, 6);
+    border-radius: 40px;
+    padding: 5px 20px;
+    box-sizing: border-box;
+}
+
+.result-defeat {
+    background-color: rgb(203, 36, 6);
+    border-radius: 40px;
+    padding: 5px 20px;
+    box-sizing: border-box;
+}

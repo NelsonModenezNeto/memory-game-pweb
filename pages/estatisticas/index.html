@@ -5,7 +5,6 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Estatísticas</title>
         <link rel="stylesheet" href="style.css">
-        <script src="ranking-card.js"></script>
 </head>
 <body>
     <div class="display">
@@ -15,57 +14,37 @@
                     <h2>Ranking do Jogo</h2>
                 </div>
                 <div class="content">
-                    <script>
-                            rankingCardComponent({
-                                username: "teste",
-                                avatarUrl: "../../assets/avatar.png",
-                                points: 5000,
-                                position: 1
-                            });
-                            rankingCardComponent({
-                                username: "teste",
-                                avatarUrl: "../../assets/avatar.png",
-                                points: 5000,
-                                position: 1
-                            });
-                            rankingCardComponent({
-                                username: "teste",
-                                avatarUrl: "../../assets/avatar.png",
-                                points: 5000,
-                                position: 1
-                            });
-                            rankingCardComponent({
-                                username: "teste",
-                                avatarUrl: "../../assets/avatar.png",
-                                points: 5000,
-                                position: 1
-                            });
-                            rankingCardComponent({
-                                username: "teste",
-                                avatarUrl: "../../assets/avatar.png",
-                                points: 5000,
-                                position: 1
-                            });
-                    </script>
-                    <div class="ranking-card">
-                        <div class="avatar">
-                            <img class="avatar-img" src="../../assets/avatar.png" alt="imagem genérica de avatar">
-                        </div>
-                        <div class="info">
-                            <p class="username">hitallozx</p>
-                            <p class="points"><span>4000</span>pts</p>
-                        </div>
-                        <div class="position">
-                            #1
-                        </div>
-                    </div>
-
                 </div>
             </div>
         </section>
-
         <section class="logs-section">
+            <div class="logs-display">
+                <div class="title">
+                    <h2>Histórico de partidas</h2>
+                </div>
+                <div class="content">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Jogador</th>
+                                <th>Resultado</th>
+                                <th>Tamanho do tabuleiro</th>
+                                <th>Modalidade</th>
+                                <th>Jogadas</th>
+                                <th>Tempo Gasto</th>
+                                <th>Data</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </section>
     </div>
+    <script type="module"  src="load-ranking.js"></script>
+    <script type="module" src="load-logs.js"></script>
 </body>
 </html>

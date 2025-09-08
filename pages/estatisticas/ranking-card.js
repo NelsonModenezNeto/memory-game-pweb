@@ -1,4 +1,4 @@
-function rankingCardComponent(props) {
+export function rankingCardComponent(props) {
   if (
     !props ||
     !props.avatarUrl ||
