@@ -21,3 +21,16 @@ selectLogin2.addEventListener('click', function () {
     selectRegister2.classList.add('login-active');
     contentLogin.classList.remove('register-active');
 });
+
+
+const btnLogin = document.getElementById('login');
+btnLogin.addEventListener('click', function(){
+    //Efetuar login
+    window.location.href = 'home';
+})
+
+const btnRegister = document.getElementById('register');
+btnRegister.addEventListener('click', function(){
+    //Efetuar Register
+    window.location.href = 'home';
+})
