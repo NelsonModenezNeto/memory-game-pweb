@@ -10,7 +10,7 @@
     align-items: center;
     width: 100%;
     height: 100vh;
-    background-color: #dcdcdc;
+    background-color: black;
 }
 
 .content-form {
@@ -40,23 +40,16 @@
 .banner {
     position: absolute;
     top: 5px;
-    right: 0;
-    width: 50%;
-    height: 100%;
+    right: 4px;
+    width: 49%;
+    height: 98%;
     transition: transform 0.8s ease-in-out, right 0.8s ease-in-out;
+    border-radius: 10px;
+    overflow: hidden;
 }
 
 .content-login.register-active .banner {
-    transform: translateX(-99%);
-
-     .img-cloud-two{
-        left: 290px;
-    }
-    .img-cloud-one{
-        left: -55px;
-    }
-
-   
+    transform: translateX(-102%);
 }
 
 .content-login.login-active .banner {
@@ -179,42 +172,35 @@
     border-radius: 10px;
 }
 
+#background-canvas {
+    position: absolute; 
+    top: 0;
+    left: 0;
+    width: 300%;
+    height: 300%;
+    background: transparent;
+    z-index: 0;
+    border-radius: 20px;
+}
+
+
 .img-back-gradient {
     position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 99%;
-    height: 98%;
-    border-radius: 10px;
-    background: linear-gradient(50deg, rgba(124, 150, 226, 1) 0%, rgba(179, 92, 251, 1) 100%);
+    width: 100%;
+    height: 100%;
+    background: black;
     overflow: hidden;
 }
 
 .img-back {
-    width: 260px;
-    height: 260px;
+    width: 230px;
+    height: 230px;
     margin-bottom: 20px;
     animation: boil 3.5s infinite;
-}
-
-.img-cloud-one {
-    position: absolute;
-    top: -70px;
-    right: -100px;
-    width: 250px;
-    height: 230px;
-    animation: boil 5s infinite;
-}
-
-.img-cloud-two {
-    position: absolute;
-    bottom: 20px;
-    left: -55px;
-    width: 250px;
-    height: 230px;
-    animation: boil 5s infinite;
-
+    z-index: 1;
 }
 
 @keyframes boil {
