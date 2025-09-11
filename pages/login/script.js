@@ -24,13 +24,13 @@ selectLogin2.addEventListener('click', function () {
 
 
 const btnLogin = document.getElementById('login');
-btnLogin.addEventListener('click', function(){
+btnLogin.addEventListener('click', function () {
     //Efetuar login
-    window.location.href = 'home';
+    window.location.href = '/pages/home/home.html';
 })
 
 const btnRegister = document.getElementById('register');
-btnRegister.addEventListener('click', function(){
+btnRegister.addEventListener('click', function () {
     //Efetuar Register
-    window.location.href = 'home';
+    window.location.href = '/pages/home/home.html';
 })
