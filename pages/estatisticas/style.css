@@ -8,18 +8,13 @@
 body {
     min-height: 100vh;
     position: relative;
+    background-color: black;
 }
 
 .display {
     display: flex;
     flex-direction: column;
     height: 100vh;
-}
-
-/*Remover*/
-.display>section {
-    width: 100%;
-    height: 100%;
 }
 
 .ranking-section,
@@ -31,12 +26,12 @@ body {
 }
 
 .ranking-display {
-    background: rgb(236, 236, 236);
-    box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.26);
+    background: rgb(36, 36, 36);
     height: 80%;
     width: 80%;
     border-radius: 10px;
     color: rgb(0, 0, 0);
+    border: 1px solid rgb(78, 78, 78);
 }
 
 .ranking-display .title {
@@ -44,9 +39,15 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    color: white;
+}
+
+.title{
+    color: white;
 }
 
 .subTitle {
+    color: white;
     font-size: 20px;
     margin-bottom: 10px;
 }
@@ -71,19 +72,19 @@ body {
     flex-wrap: wrap;
     gap: 20px;
     margin-top: 10px;
-    scrollbar-width: thin;
-    scrollbar-color: #141414 transparent;
+    scrollbar-width: 10px;
+    scrollbar-color: #f7f7f7 transparent;
 }
 
 .ranking-card {
     position: relative;
     display: flex;
-    box-shadow: -4px 4px 0px 0px rgba(0, 0, 0, 0.75);
+    box-shadow: -4px 4px 0px 0px rgba(139, 139, 139, 0.75);
     padding: 10px;
     border-radius: 10px;
     height: 70px;
     width: 45%;
-    background: rgb(215, 215, 215);
+    background: rgb(180, 180, 180);
 }
 
 .ranking-card:hover {
@@ -145,6 +146,9 @@ body {
 .logs-display .content {
     overflow: auto;
     height: 100%;
+    scrollbar-width: 10px;
+    scrollbar-color: #ffffff transparent;
+    background-color: #999999;
 }
 
 .logs-display table {
@@ -160,6 +164,14 @@ body {
     padding: 5px 10px;
 }
 
+.logs-display table tr:nth-child(even) {
+    background-color: #b8b8b8;
+}
+
+.logs-display table tr:nth-child(odd) {
+    background-color: #999999;
+}
+
 .logs-display tbody tr {
     border-top: 1px solid black;
 }
@@ -171,9 +183,10 @@ body {
 }
 
 .logs-display .content table thead th {
+    color: white;
     position: sticky;
     top: 0;
-    background-color: #937ce7;
+    background-color: #272727;
 }
 
 .logs-display table th:first-child {
@@ -204,4 +217,12 @@ body {
     border-radius: 40px;
     padding: 5px 20px;
     box-sizing: border-box;
+}
+
+#background-canvas {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    background: transparent;
+    z-index: -1;
 }
