@@ -17,6 +17,10 @@ body {
     height: 100vh;
 }
 
+.ranking-section {
+    margin-top: 80px;
+}
+
 .ranking-section,
 .logs-section {
     display: flex;
@@ -42,7 +46,7 @@ body {
     color: white;
 }
 
-.title{
+.title {
     color: white;
 }
 
