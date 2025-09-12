@@ -1,3 +1,5 @@
+@import '../../globals/global.css';
+
 * {
     padding: 0;
     margin: 0;
@@ -7,14 +9,6 @@
 
 body {
     background-color: black;
-}
-
-#background-canvas {
-    position: fixed;
-    width: 100vw;
-    height: 100vh;
-    background: transparent;
-    z-index: -1;
 }
 
 .container {
