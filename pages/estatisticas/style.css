@@ -83,12 +83,12 @@ body {
 .ranking-card {
     position: relative;
     display: flex;
-    box-shadow: -4px 4px 0px 0px rgba(139, 139, 139, 0.75);
+    box-shadow: -4px 4px 0px 0px rgba(167, 167, 167, 0.75);
     padding: 10px;
     border-radius: 10px;
     height: 70px;
     width: 45%;
-    background: rgb(180, 180, 180);
+    background: rgb(211, 211, 211);
 }
 
 .ranking-card:hover {
@@ -152,7 +152,7 @@ body {
     height: 100%;
     scrollbar-width: 10px;
     scrollbar-color: #ffffff transparent;
-    background-color: #999999;
+    background-color: #000000;
 }
 
 .logs-display table {
