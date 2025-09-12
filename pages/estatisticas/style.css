@@ -32,12 +32,15 @@ body {
 }
 
 .ranking-display {
-    background: rgb(36, 36, 36);
     height: 80%;
     width: 80%;
-    border-radius: 10px;
-    color: rgb(0, 0, 0);
-    border: 1px solid rgb(78, 78, 78);
+    color: black;
+  background: rgba(0, 0, 0, 0.05);
+  border-radius: 16px;
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(2px) saturate(25%);
+  -webkit-backdrop-filter: blur(2px) saturate(25%);
+  border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
 .ranking-display .title {
