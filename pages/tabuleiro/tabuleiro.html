@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="pt-br">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tabuleiro</title>
-    <link rel="stylesheet" href="./style.css" />
+    <link rel="stylesheet" href="./style.css">
   </head>
   <body>
     <canvas id="background-canvas"></canvas>
@@ -12,17 +12,36 @@
     <div class="container">
       <div class="left-panel-container">
         <div class="side-panel left-panel">
-          <button class="btn">Ver Histórico</button>
-          <button class="btn">Tela Inicial</button>
+
+          <a href="../historico/index.html" class="btn">
+              <span class="btn-text">
+                Ver Histórico
+              </span>
+          </a>
+
+          <a href="../home/home.html" class="btn">
+              <span class="btn-text">
+                Tela Inicial
+              </span>
+          </a>
+          
         </div>
 
         <div class="side-panel left-panel">
           <div class="cheats">
             <div class="img-cheat-container">
-              <img class="joker-img" src="../../assets/joker.png" alt="joker" />
+              <img class="joker-img" src="../../assets/joker.png" alt="joker">
             </div>
-            <button class="btn">Ver as cartas</button>
-            <button class="btn">Volte ao jogo</button>
+            <button class="btn btn-joker" id="joker-all-cards">
+              <span class="btn-text-joker">
+                Ver as cartas
+              </span>
+            </button>
+            <button class="btn btn-joker" id="joker-back-game">
+              <span class="btn-text-joker">
+                Volte ao jogo
+              </span>
+            </button>
           </div>
         </div>
       </div>

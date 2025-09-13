@@ -17,3 +17,15 @@
 
 //   createBoard(4);
 // });
+
+document.addEventListener("DOMContentLoaded", () => {
+  const btnJoker = document.querySelector("#joker-all-cards");
+  btnJoker.addEventListener("click", () => {
+    btnJoker.classList.add("cheat-active");
+  });
+
+  const btnJokerBackGame = document.querySelector("#joker-back-game");
+  btnJokerBackGame.addEventListener("click", () => {
+    btnJoker.classList.remove("cheat-active");
+  });
+});
