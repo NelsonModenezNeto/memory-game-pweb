@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Configurações</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <canvas id="background-canvas"></canvas>
+  <div class="container">
+    <div class="header">
+      <img class="back-arrow" src="../../assets/back-arrow.png" alt="Voltar">
+      <span class="title">Configurações</span>
+    </div>
+    
+    <form class="config-form">
+      <div class="carousel-container">
+        <button type="button" class="nav-btn prev-btn" id="prevBtn">‹</button>
+        <!-- Carrossel Container -->
+        <div class="carousel-item">
+          <!-- Slides do carrossel -->
+          <div class="carousel-wrapper">
+            <!-- Card 1: Informações do Usuário -->
+            <div class="carousel-slide active">
+              <div class="card">
+                <div class="card-header">
+                  <h2>👤 Informações do Usuário</h2>
+                  <p>Gerencie seus dados pessoais</p>
+                </div>
+                <div class="card-content">
+                  <div class="field-group">
+                    <label for="nome">Nome Completo</label>
+                    <input type="text" id="nome" name="nome" required>
+                  </div>
+                  
+                  <div class="field-group">
+                    <label for="telefone">Telefone</label>
+                    <input type="tel" id="telefone" name="telefone">
+                  </div>
+                  
+                  <div class="field-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
+                  </div>
+                  
+                  <div class="field-group">
+                    <label for="senha">Nova Senha</label>
+                    <input type="password" id="senha" name="senha">
+                  </div>
+                  
+                  <div class="field-group">
+                    <label for="confirmar-senha">Confirmar Nova Senha</label>
+                    <input type="password" id="confirmar-senha" name="confirmar-senha">
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Card 2: Configurações da Partida -->
+            <div class="carousel-slide">
+              <div class="card">
+                <div class="card-header">
+                  <h2>🎮 Configurações da Partida</h2>
+                  <p>Personalize sua experiência de jogo</p>
+                </div>
+                <div class="card-content">
+                  <div class="field-group">
+                    <label>Dimensões do Tabuleiro</label>
+                    <div class="radio-group">
+                      <label class="radio-option">
+                        <input type="radio" name="dimensoes" value="4x4" checked>
+                        <span>4x4 (Fácil)</span>
+                      </label>
+                      <label class="radio-option">
+                        <input type="radio" name="dimensoes" value="6x6">
+                        <span>6x6 (Médio)</span>
+                      </label>
+                      <label class="radio-option">
+                        <input type="radio" name="dimensoes" value="8x8">
+                        <span>8x8 (Difícil)</span>
+                      </label>
+                    </div>
+                  </div>
+                  
+                  <div class="field-group">
+                    <label>Modalidade de Jogo</label>
+                    <div class="radio-group">
+                      <label class="radio-option">
+                        <input type="radio" name="modalidade" value="classica" checked>
+                        <span>Clássica</span>
+                      </label>
+                      <label class="radio-option">
+                        <input type="radio" name="modalidade" value="contra-tempo">
+                        <span>Contra o Tempo</span>
+                      </label>
+                      <label class="radio-option">
+                        <input type="radio" name="modalidade" value="vidas-limitadas">
+                        <span>Vidas Limitadas</span>
+                      </label>
+                    </div>
+                  </div>
+                  
+                  <div class="field-group">
+                    <div class="info-text">
+                      <strong>Tempo Sugerido:</strong>
+                      <span id="tempo-sugerido">2-3 minutos para 4x4</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Card 3: Informações do Jogo -->
+            <div class="carousel-slide">
+              <div class="card">
+                <div class="card-header">
+                  <h2>ℹ️ Informações</h2>
+                  <p>Conheça as regras e objetivos</p>
+                </div>
+                <div class="card-content">
+                  <div class="info-section">
+                    <h3>Regras do Jogo</h3>
+                    <p>Encontre todos os pares de cartas virando-as duas por vez. Se as cartas forem iguais, elas permanecem viradas. Se forem diferentes, elas voltam a ficar ocultas.</p>
+                  </div>
+                  
+                  <div class="info-section">
+                    <h3>Objetivo</h3>
+                    <p>Descubra todos os pares de cartas no menor tempo possível e com o menor número de tentativas.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Navegação do carrossel -->
+          <div class="carousel-navigation">
+            
+            
+          </div>
+          
+          <!-- Indicador inferior -->
+          <div class="carousel-dots">
+            <div class="dot active" data-slide="0"></div>
+            <div class="dot" data-slide="1"></div>
+            <div class="dot" data-slide="2"></div>
+          </div>
+        </div>
+
+        <button type="button" class="nav-btn next-btn" id="nextBtn">›</button>
+      </div>
+      <!-- Botões de Ação -->
+      <div class="form-actions">
+        <button type="button" class="btn btn-secondary">Cancelar</button>
+        <button type="submit" class="btn btn-primary">Salvar Configurações</button>
+      </div>
+    </form>
+  </div>
+  
+  <script src="../background.js"></script>
+  <script type="module" src="navigate.js"></script>
+</body>
+</html>
