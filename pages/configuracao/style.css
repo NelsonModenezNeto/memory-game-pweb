@@ -192,10 +192,6 @@ body {
   border-radius: 20px;
   padding: 1px;
   background: linear-gradient(135deg, rgba(124, 150, 226, 0.3), rgba(90, 123, 216, 0.1), rgba(124, 150, 226, 0.3));
-  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  mask-composite: xor;
-  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
   z-index: -1;
 }
 
