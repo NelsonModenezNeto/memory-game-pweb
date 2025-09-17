@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./style.css" />
+    <title>Historico</title>
+  </head>
+  <body>
+    <canvas id="background-canvas"></canvas>
+    <a href="../tabuleiro/tabuleiro.html"><p>Voltar</p></a>
+    <div class="container">
+      <section class="logs-section">
+        <div class="title">
+          <h2>Histórico de partidas</h2>
+        </div>
+        <div class="subTitle">
+          Acompanhe o seu histórico de partidas
+        </div>
+        <div class="logs-display">
+          <div class="content">
+            <table>
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Resultado</th>
+                  <th>Tamanho do tabuleiro</th>
+                  <th>Modalidade</th>
+                  <th>Jogadas</th>
+                  <th>Tempo Gasto</th>
+                  <th>Data</th>
+                </tr>   
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+    </div>
+    <script type="module" src="load-ranking.js"></script>
+    <script type="module" src="load-logs.js"></script>
+    <script src="../background.js"></script>
+  </body>
+</html>
