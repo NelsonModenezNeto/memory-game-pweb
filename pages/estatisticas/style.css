@@ -81,7 +81,7 @@ body {
     flex-wrap: wrap;
     gap: 20px;
     margin-top: 10px;
-    scrollbar-width: 10px;
+    scrollbar-width: auto;
     scrollbar-color: #f7f7f7 transparent;
 }
 

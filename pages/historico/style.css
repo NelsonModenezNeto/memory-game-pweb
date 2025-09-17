@@ -81,7 +81,7 @@ body {
 .logs-display .content {
     overflow: auto;
     height: 80vh;
-    scrollbar-width: 10px;
+    scrollbar-width: auto;
     scrollbar-color: #ffffff transparent;
     background-color: #000000;
 }
