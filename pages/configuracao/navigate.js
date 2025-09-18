@@ -90,16 +90,28 @@ document.addEventListener('DOMContentLoaded', function() {
   const dimensoesRadios = document.querySelectorAll('input[name="dimensoes"]');
   const tempoSugerido = document.getElementById('tempo-sugerido');
   
+  const temposSugeridos = {
+    '4x4': '2-3 minutos',
+    '6x6': '5-8 minutos', 
+    '8x8': '10-15 minutos'
+  };
+  
+  // Função para atualizar o tempo sugerido
+  function updateTempoSugerido() {
+    if (!tempoSugerido) return;
+    const selectedRadio = document.querySelector('input[name="dimensoes"]:checked');
+    if (selectedRadio && temposSugeridos[selectedRadio.value]) {
+      tempoSugerido.textContent = temposSugeridos[selectedRadio.value];
+    }
+  }
+  
   if (dimensoesRadios.length && tempoSugerido) {
-    const temposSugeridos = {
-      '4x4': '2-3 minutos',
-      '6x6': '5-8 minutos', 
-      '8x8': '10-15 minutos'
-    };
+    // Inicializa o tempo sugerido
+    updateTempoSugerido();
     
     dimensoesRadios.forEach(radio => {
       radio.addEventListener('change', function() {
-        tempoSugerido.textContent = temposSugeridos[this.value];
+        updateTempoSugerido();
         saveCurrentConfig();
       });
     });
@@ -122,14 +134,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const dimensaoRadio = document.querySelector(`input[name="dimensoes"][value="${config.dimensoes}"]`);
     if (dimensaoRadio) {
       dimensaoRadio.checked = true;
-      if (tempoSugerido) {
-        const temposSugeridos = {
-          '4x4': '2-3 minutos',
-          '6x6': '5-8 minutos', 
-          '8x8': '10-15 minutos'
-        };
-        tempoSugerido.textContent = temposSugeridos[config.dimensoes];
-      }
+      // Atualiza o tempo sugerido após definir a dimensão
+      updateTempoSugerido();
     }
     
     const modalidadeRadio = document.querySelector(`input[name="modalidade"][value="${config.modalidade}"]`);
