@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded', function() {
   const prevButton = document.getElementById("prevBtn");
   const dots = document.querySelectorAll('.dot');
   const slides = document.querySelectorAll('.carousel-slide');
+  const backArrow = document.getElementById('back-arrow');
   
   let currentSlide = 0;
   const totalSlides = slides.length;
@@ -174,4 +175,9 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     });
   }
+
+  // navigate to home
+  backArrow.addEventListener('click', () => {
+    window.location.href = '/pages/home/home.html';
+  });
 });
