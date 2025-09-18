@@ -1,167 +1,147 @@
-@import '../../globals/global.css';
+@import "../../globals/global.css";
 
 * {
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-    font-family: 'Courier New', Courier, monospace;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Courier New", Courier, monospace;
 }
 
 body {
-    min-height: 100vh;
-    position: relative;
-    background-color: black;
+  min-height: 100vh;
+  position: relative;
+  background-color: black;
 }
 
 .display {
-    display: flex;
-    flex-direction: column;
-    height: 100vh;
-}
-
-.ranking-section {
-    margin-top: 80px;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  height: 100vh;
 }
 
 .ranking-section,
 .logs-section {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .ranking-display {
-    height: 80%;
-    width: 80%;
-    color: black;
+  height: 70%;
+  width: 80%;
+  color: black;
   background: rgba(0, 0, 0, 0.05);
   border-radius: 16px;
+  overflow: scroll;
+  overflow-x: hidden;
   box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
   backdrop-filter: blur(2px) saturate(25%);
   -webkit-backdrop-filter: blur(2px) saturate(25%);
   border: 1px solid rgba(255, 255, 255, 0.3);
-}
-
-.ranking-display .title {
-    margin-top: 15px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: white;
+    scrollbar-width: auto;
+  scrollbar-color: #f7f7f7 transparent;
 }
 
 .title {
-    color: white;
+  color: white;
 }
 
 .subTitle {
-    color: white;
-    font-size: 20px;
-    margin-bottom: 10px;
+  color: white;
+  font-size: 20px;
+  margin-bottom: 10px;
 }
 
 .ranking-display .content {
-    padding-top: 1rem;
-    padding-bottom: 1rem;
-    display: flex;
-    gap: 1rem;
-    flex-direction: column;
-    align-items: center;
-    overflow: auto;
-    overflow-x: hidden;
-    height: 80%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-top: 10px;
+  box-sizing: border-box;
 
-}
-
-.ranking-display .content {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 20px;
-    margin-top: 10px;
-    scrollbar-width: auto;
-    scrollbar-color: #f7f7f7 transparent;
 }
 
 .ranking-card {
-    position: relative;
-    display: flex;
-    box-shadow: -4px 4px 0px 0px rgba(167, 167, 167, 0.75);
-    padding: 10px;
-    border-radius: 10px;
-    height: 70px;
-    width: 45%;
-    background: rgb(211, 211, 211);
+  position: relative;
+  display: flex;
+  box-shadow: -4px 4px 0px 0px rgba(167, 167, 167, 0.75);
+  padding: 10px;
+  margin-bottom: 1rem;
+  border-radius: 10px;
+  height: 70px;
+  width: 90%;
+  background: rgb(211, 211, 211);
 }
 
 .ranking-card:hover {
-    scale: 1.01;
-    cursor: pointer;
+  scale: 1.01;
+  cursor: pointer;
 }
 
-.ranking-card>.avatar {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 10%;
+.ranking-card > .avatar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 10%;
 }
 
-.ranking-card>.info {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    margin-top: 2px;
-    width: 70%;
-    padding-left: 1rem;
+.ranking-card > .info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 2px;
+  width: 70%;
+  padding-left: 1rem;
 }
 
-.ranking-card>.info p {
-    font-size: 1.1rem;
+.ranking-card > .info p {
+  font-size: 1.1rem;
 }
 
-.ranking-card>.info p:nth-child(1) {
-    font-weight: bold;
+.ranking-card > .info p:nth-child(1) {
+  font-weight: bold;
 }
 
-.ranking-card>.position {
-    width: 20%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 2rem;
-    font-weight: bold;
+.ranking-card > .position {
+  width: 20%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2rem;
+  font-weight: bold;
 }
 
 .avatar-img {
-    width: 50px;
+  width: 50px;
 }
 
 .logs-display .title {
-    height: 10%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  height: 10%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .logs-display {
-    width: 80%;
-    height: 70%;
-    background-color: rgb(238, 238, 238);
-    border-radius: 10px;
+  width: 80%;
+  height: 70%;
+  background-color: rgb(238, 238, 238);
+  border-radius: 10px;
 }
 
 .logs-display .content {
-    overflow: auto;
-    height: 100%;
-    scrollbar-width: 10px;
-    scrollbar-color: #ffffff transparent;
-    background-color: #000000;
+  overflow: auto;
+  height: 100%;
+  scrollbar-width: 10px;
+  scrollbar-color: #ffffff transparent;
+  background-color: #000000;
 }
 
 .logs-display table {
-    width: 100%;
+  width: 100%;
 }
 
 .logs-display table,
@@ -169,69 +149,69 @@ body {
 .logs-display table th,
 .logs-display table,
 .logs-display tr {
-    border-collapse: collapse;
-    padding: 5px 10px;
+  border-collapse: collapse;
+  padding: 5px 10px;
 }
 
 .logs-display table tr:nth-child(even) {
-    background-color: #b8b8b8;
+  background-color: #b8b8b8;
 }
 
 .logs-display table tr:nth-child(odd) {
-    background-color: #999999;
+  background-color: #999999;
 }
 
 .logs-display tbody tr {
-    border-top: 1px solid black;
+  border-top: 1px solid black;
 }
 
 .logs-display table td,
 .logs-display table tr {
-    height: 40px;
-    text-align: center;
+  height: 40px;
+  text-align: center;
 }
 
 .logs-display .content table thead th {
-    color: white;
-    position: sticky;
-    top: 0;
-    background-color: #272727;
+  color: white;
+  position: sticky;
+  top: 0;
+  background-color: #272727;
 }
 
 .logs-display table th:first-child {
-    border-top-left-radius: 10px;
+  border-top-left-radius: 10px;
 }
 
 .logs-display table th:last-child {
-    border-top-right-radius: 10px;
+  border-top-right-radius: 10px;
 }
 
 .logs-display table tr:last-child td:first-child {
-    border-bottom-left-radius: 10px;
+  border-bottom-left-radius: 10px;
 }
 
 .logs-display table tr:last-child td:last-child {
-    border-bottom-right-radius: 10px;
+  border-bottom-right-radius: 10px;
 }
 
 .result-victory {
-    background-color: rgb(124, 203, 6);
-    border-radius: 40px;
-    padding: 5px 20px;
-    box-sizing: border-box;
+  background-color: rgb(124, 203, 6);
+  border-radius: 40px;
+  padding: 5px 20px;
+  box-sizing: border-box;
 }
 
 .result-defeat {
-    background-color: rgb(203, 36, 6);
-    border-radius: 40px;
-    padding: 5px 20px;
-    box-sizing: border-box;
+  background-color: rgb(203, 36, 6);
+  border-radius: 40px;
+  padding: 5px 20px;
+  box-sizing: border-box;
 }
 
 #background-canvas {
-    position: fixed;
-    width: 100vw;
-    height: 100vh;
-    background: transparent;
-    z-index: -1;
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  background: transparent;
+  z-index: -1;
 }
