@@ -27,15 +27,13 @@ body {
 }
 
 .tabuleiro {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: repeat(4, 1fr);
-  /* grid-template-columns: repeat(var(--grid-size, 8), 1fr); versao para modificar o tamanho do tabuleiro
-  grid-template-rows: repeat(var(--grid-size, 8), 1fr); */
+  display: flex;
   padding: 20px;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  flex-direction: row;
   gap: 15px;
-  width: 1000px;
-  height: 650px;
   background: rgba(0, 0, 0, 0.05);
   border-radius: 16px;
   box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
