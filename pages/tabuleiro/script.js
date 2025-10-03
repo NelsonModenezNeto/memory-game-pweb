@@ -6,9 +6,18 @@ let images = [
   "assets/card_images/serious_goku_meme.png",
   "assets/card_images/shocked_sonic.png",
 ];
+//html elements
+const btnJoker = document.querySelector("#joker-all-cards");
+const btnJokerBackGame = document.querySelector("#joker-back-game");
+const table = document.querySelector(".tabuleiro");
+const game = JSON.parse(localStorage.getItem("game"));
+const cardImages = getCardImages(game, images);
 
-  const btnJoker = document.querySelector("#joker-all-cards");
-  const btnJokerBackGame = document.querySelector("#joker-back-game");
+// Variáveis de controle do jogo
+let flippedCards = [];
+let isChecking = false;
+let matchedPairs = 0;
+let moves = 0;
 
 function getCardImages(game, images) {
   let selected = images
@@ -20,23 +29,18 @@ function getCardImages(game, images) {
   return pairs.sort(() => Math.random() - 0.5);
 }
 
+//Joker section
 document.addEventListener("DOMContentLoaded", () => {
   btnJoker.addEventListener("click", () => {
     btnJoker.classList.add("cheat-active");
-
+    revealAllCards();
   });
 
   btnJokerBackGame.addEventListener("click", () => {
     btnJoker.classList.remove("cheat-active");
+    backToGame();
   });
 });
-
-const table = document.querySelector(".tabuleiro");
-const game = JSON.parse(localStorage.getItem("game"));
-
-const cardImages = getCardImages(game, images);
-
-console.log(cardImages);
 
 const tableWidth = {
   2: 230,
@@ -59,26 +63,20 @@ for (let i = 0; i < game.tableSize * game.tableSize; i++) {
   table.appendChild(card);
 }
 
-// Variáveis de controle do jogo
-let flippedCards = [];
-let isChecking = false;
-let matchedPairs = 0;
-let moves = 0;
-
-// Função para verificar se duas cartas são iguais
+// função para verificar se duas cartas são iguais
 function checkMatch(card1, card2) {
   const image1 = card1.style.backgroundImage;
   const image2 = card2.style.backgroundImage;
   return image1 === image2;
 }
 
-// Função para fechar cartas após um delay
+// função para fechar cartas após um delay
 function closeCards(card1, card2) {
   setTimeout(() => {
     card1.classList.remove("revealed");
     card2.classList.remove("revealed");
     isChecking = false;
-  }, 700); // 1 segundo para o jogador ver as cartas
+  }, 700); // 0.7 segundo para o jogador ver as cartas
 }
 
 function markAsMatched(card1, card2) {
@@ -129,4 +127,26 @@ function handleCardClick(card) {
 
     flippedCards = [];
   }
+}
+
+function revealAllCards() {
+  const allCards = document.querySelectorAll(".cards");
+  if (!allCards) {
+    return;
+  }
+
+  allCards.forEach((card) => {
+    card.classList.add("revealed");
+  });
+}
+
+function backToGame() {
+  const allCards = document.querySelectorAll(".cards");
+  if (!allCards) {
+    return;
+  }
+
+  allCards.forEach((card) => {
+    card.classList.remove("revealed");
+  });
 }
