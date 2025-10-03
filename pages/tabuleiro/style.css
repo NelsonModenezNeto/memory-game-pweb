@@ -164,11 +164,27 @@ body {
 }
 
 .cards {
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   border-radius: 10px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.cards::before {
+  content: '';
+  position: absolute;
+  top: -1px;
+  left: -1px;
+  width: calc(100% + 2px);
+  height: calc(100% + 2px);
   background-image: linear-gradient(
     to left,
     #ff0088,
@@ -180,13 +196,29 @@ body {
   );
   background-size: 200% auto;
   background-position: left center;
-  transition: background-position 0.7s ease, transform 0.3s ease,
-    box-shadow 0.3s ease;
-  cursor: pointer;
+  border-radius: 10px;
+  transition: transform 0.5s ease, background-position 0.6s ease;
+  z-index: 1;
+}
+
+.cards.revealed::before {
+  transform: translateX(-100%);
+}
+
+.cards.matched::before {
+  transform: translateX(-100%);
+}
+
+.cards.matched {
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+.cards:hover::before {
+  background-position: right center;
 }
 
 .cards:hover {
-  background-position: right center;
   transform: translateY(-2px);
   box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
 }
