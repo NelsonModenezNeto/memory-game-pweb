@@ -5,6 +5,9 @@ let images = [
   "assets/card_images/plankton_meme.png",
   "assets/card_images/serious_goku_meme.png",
   "assets/card_images/shocked_sonic.png",
+  "assets/card_images/gru-henning.jpeg",
+  "assets/card_images/shrek.jpg",
+  "assets/card_images/stonks.png",
 ];
 //html elements
 const btnJoker = document.querySelector("#joker-all-cards");
