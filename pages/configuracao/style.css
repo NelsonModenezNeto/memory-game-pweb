@@ -1,23 +1,13 @@
-@import '../../globals/global.css';
-
-* {
-  padding: 0;
-  margin: 0;
-  font-family: 'Courier New', Courier, monospace;
-  box-sizing: border-box;
-}
+@import "../../globals/global.css";
 
 body {
   margin: 0;
   padding: 0;
-  background-color: black;
-  color: #fff;
-  min-height: 100vh;
-  overflow-x: hidden;
-  overflow-y: hidden;
   display: flex;
   justify-content: center;
   align-items: center;
+  overflow-x: hidden;
+  overflow-y: hidden;
 }
 
 .container {
@@ -30,7 +20,7 @@ body {
 
 .container::before {
   z-index: -1;
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
@@ -84,7 +74,7 @@ body {
   max-width: 800px;
   margin-left: auto;
   margin-right: auto;
-  grid-template-areas: 
+  grid-template-areas:
     ". carousel-item ."
     "prev-btn carousel-item next-btn"
     ". carousel-item .";
@@ -132,7 +122,7 @@ body {
 .carousel-wrapper {
   position: relative;
   width: 100%;
-  height: 480px;
+  height: 450px;
   overflow: hidden;
   border-radius: 15px;
 }
@@ -176,14 +166,13 @@ body {
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  box-shadow: 
-    0 8px 32px rgba(0, 0, 0, 0.3),
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3),
     inset 0 1px 0 rgba(255, 255, 255, 0.1);
   position: relative;
 }
 
 .card::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
@@ -191,12 +180,21 @@ body {
   bottom: 0;
   border-radius: 20px;
   padding: 1px;
-  background: linear-gradient(135deg, rgba(124, 150, 226, 0.3), rgba(90, 123, 216, 0.1), rgba(124, 150, 226, 0.3));
+  background: linear-gradient(
+    135deg,
+    rgba(124, 150, 226, 0.3),
+    rgba(90, 123, 216, 0.1),
+    rgba(124, 150, 226, 0.3)
+  );
   z-index: -1;
 }
 
 .card-header {
-  background: linear-gradient(135deg, rgba(124, 150, 226, 0.08), rgba(90, 123, 216, 0.08));
+  background: linear-gradient(
+    135deg,
+    rgba(124, 150, 226, 0.08),
+    rgba(90, 123, 216, 0.08)
+  );
   border-bottom: 1px solid rgba(124, 150, 226, 0.2);
   padding: 1.5rem;
   text-align: center;
@@ -204,14 +202,19 @@ body {
 }
 
 .card-header::after {
-  content: '';
+  content: "";
   position: absolute;
   bottom: 0;
   left: 50%;
   transform: translateX(-50%);
   width: 60%;
   height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(124, 150, 226, 0.4), transparent);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(124, 150, 226, 0.4),
+    transparent
+  );
 }
 
 .card-header h2 {
@@ -260,13 +263,18 @@ body {
 }
 
 .nav-btn::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(124, 150, 226, 0.1), transparent);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(124, 150, 226, 0.1),
+    transparent
+  );
   transition: left 0.5s ease;
 }
 
@@ -329,8 +337,7 @@ body {
 .field-group input:focus {
   outline: none;
   border-color: rgba(124, 150, 226, 0.5);
-  box-shadow: 
-    0 0 0 2px rgba(124, 150, 226, 0.1),
+  box-shadow: 0 0 0 2px rgba(124, 150, 226, 0.1),
     0 0 15px rgba(124, 150, 226, 0.2);
   background: rgba(255, 255, 255, 0.06);
 }
@@ -479,64 +486,64 @@ body {
   .container {
     padding: 1rem 0.5rem;
   }
-  
+
   .title {
     font-size: 1.3rem;
   }
-  
+
   .carousel-wrapper {
     height: 420px;
   }
-  
+
   .carousel-item {
     min-width: 500px;
   }
-  
+
   .card-header {
     padding: 1rem;
   }
-  
+
   .card-header h2 {
     font-size: 1.3rem;
   }
-  
+
   .card-content {
     padding: 1rem;
   }
-  
+
   .carousel-dots {
     gap: 0.4rem;
     margin-top: 0.8rem;
   }
-  
+
   .dot {
     width: 6px;
     height: 6px;
   }
-  
+
   .dot.active {
     width: 20px;
     height: 6px;
   }
-  
+
   .radio-group {
     gap: 0.5rem;
   }
-  
+
   .radio-option {
     padding: 0.5rem;
   }
-  
+
   .form-actions {
     flex-direction: column;
     align-items: center;
   }
-  
+
   .btn {
     width: 100%;
     max-width: 300px;
   }
-  
+
   .nav-btn {
     width: 35px;
     height: 35px;
@@ -548,27 +555,27 @@ body {
   .container {
     padding: 0.5rem;
   }
-  
+
   .title {
     font-size: 1.1rem;
   }
-  
+
   .carousel-wrapper {
     height: 380px;
   }
-  
+
   .carousel-item {
     min-width: 400px;
   }
-  
+
   .card-header h2 {
     font-size: 1.1rem;
   }
-  
+
   .card-header p {
     font-size: 0.8rem;
   }
-  
+
   .field-group input[type="text"],
   .field-group input[type="email"],
   .field-group input[type="tel"],
@@ -576,31 +583,31 @@ body {
     padding: 0.6rem;
     font-size: 0.9rem;
   }
-  
+
   .radio-option span {
     font-size: 0.9rem;
   }
-  
+
   .btn {
     padding: 0.6rem 1.5rem;
     font-size: 0.9rem;
   }
-  
+
   .carousel-dots {
     gap: 0.3rem;
     margin-top: 0.6rem;
   }
-  
+
   .dot {
     width: 5px;
     height: 5px;
   }
-  
+
   .dot.active {
     width: 16px;
     height: 5px;
   }
-  
+
   .nav-btn {
     width: 30px;
     height: 30px;

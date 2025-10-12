@@ -1,16 +1,7 @@
 @import "../../globals/global.css";
 
-* {
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
-  font-family: "Courier New", Courier, monospace;
-}
-
 body {
-  min-height: 100vh;
   position: relative;
-  background-color: black;
 }
 
 .display {
@@ -61,7 +52,6 @@ body {
   width: 100%;
   margin-top: 10px;
   box-sizing: border-box;
-
 }
 
 .ranking-card {
@@ -160,7 +150,6 @@ body {
 .logs-display table tr:nth-child(odd) {
   background-color: #999999;
 }
-
 .logs-display tbody tr {
   border-top: 1px solid black;
 }
@@ -189,11 +178,9 @@ body {
 .logs-display table tr:last-child td:first-child {
   border-bottom-left-radius: 10px;
 }
-
 .logs-display table tr:last-child td:last-child {
   border-bottom-right-radius: 10px;
 }
-
 .result-victory {
   background-color: rgb(124, 203, 6);
   border-radius: 40px;
@@ -206,12 +193,4 @@ body {
   border-radius: 40px;
   padding: 5px 20px;
   box-sizing: border-box;
-}
-
-#background-canvas {
-  position: fixed;
-  width: 100vw;
-  height: 100vh;
-  background: transparent;
-  z-index: -1;
 }

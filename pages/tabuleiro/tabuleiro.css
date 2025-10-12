@@ -1,16 +1,5 @@
 @import "../../globals/global.css";
 
-* {
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
-  font-family: "Courier New", Courier, monospace;
-}
-
-body {
-  background-color: black;
-}
-
 .container {
   display: flex;
   justify-content: center;
@@ -65,8 +54,6 @@ body {
 .right-panel {
   justify-content: space-between;
 }
-
-
 
 .info-item {
   display: flex;
@@ -127,7 +114,7 @@ body {
 }
 
 .btn.btn-joker.cheat-active::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: -100%;
@@ -144,7 +131,7 @@ body {
   );
   transition: none;
   animation: scan-effect 1s infinite linear;
-  
+
   z-index: -1;
 }
 
@@ -153,7 +140,7 @@ body {
     left: -100%;
   }
   to {
-    left: 100%; 
+    left: 100%;
   }
 }
 
@@ -179,7 +166,7 @@ body {
 }
 
 .cards::before {
-  content: '';
+  content: "";
   position: absolute;
   top: -1px;
   left: -1px;
