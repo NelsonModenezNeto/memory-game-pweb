@@ -13,7 +13,8 @@ let images = [
 const btnJoker = document.querySelector("#joker-all-cards");
 const btnJokerBackGame = document.querySelector("#joker-back-game");
 const table = document.querySelector(".tabuleiro");
-const game = JSON.parse(localStorage.getItem("game"));
+const game = JSON.parse(localStorage.getItem("game")); //variavel temporaria, o certo é "gameConfig"
+const gameConfig = JSON.parse(localStorage.getItem("gameConfig"));
 const cardImages = getCardImages(game, images);
 
 // Variáveis de controle do jogo
@@ -23,9 +24,8 @@ let matchedPairs = 0;
 let moves = 0;
 
 function getCardImages(game, images) {
-  let selected = images
-    .sort(() => Math.random() - 0.5)
-    .slice(0, game.tableSize);
+  const numberOfPairs = (game.tableSize * game.tableSize) / 2;
+  let selected = images.sort(() => Math.random() - 0.5).slice(0, numberOfPairs);
 
   let pairs = [...selected, ...selected];
 
