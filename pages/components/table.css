@@ -1,0 +1,129 @@
+.ranking-section,
+.logs-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.title {
+  color: white;
+  margin-top: 2vh;
+}
+
+.subTitle {
+  color: white;
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.ranking-display .content {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  display: flex;
+  gap: 1rem;
+  flex-direction: column;
+  align-items: center;
+  overflow: auto;
+  overflow-x: hidden;
+  height: 80%;
+}
+
+.avatar-img {
+  width: 50px;
+}
+
+.logs-display .title {
+  height: 10%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.logs-display {
+  width: 80%;
+  height: 70%;
+  /* background-color: rgb(238, 238, 238); */
+  border-radius: 10px;
+}
+
+.logs-display .content {
+  overflow: auto;
+  height: 80vh;
+  scrollbar-width: auto;
+  scrollbar-color: #ffffff transparent;
+  background-color: #00000000;
+}
+
+.logs-display table {
+  width: 100%;
+}
+
+.logs-display table,
+.logs-display table td,
+.logs-display table th,
+.logs-display table,
+.logs-display tr {
+  border-collapse: collapse;
+  padding: 5px 10px;
+}
+
+.logs-display table tr:nth-child(even) {
+  background-color: #a5a5a5b6;
+}
+
+.logs-display table tr:nth-child(odd) {
+  background-color: #99999952;
+}
+
+.logs-display tbody tr {
+  border-top: 1px solid black;
+}
+
+.logs-display table td {
+  color: white
+}
+.logs-display table tr {
+  height: 40px;
+  text-align: center;
+}
+
+.logs-display .content table thead th {
+  color: white;
+  position: sticky;
+  top: 0;
+  background-color: #272727;
+}
+.logs-display .content table thead tr {
+    background-color: #000000;
+}
+
+.logs-display table th:first-child {
+  border-top-left-radius: 10px;
+}
+
+.logs-display table th:last-child {
+  border-top-right-radius: 10px;
+}
+
+.logs-display table tbody tr:last-child td:first-child {
+  border-bottom-left-radius: 10px;
+}
+
+.logs-display table tbody tr:last-child td:last-child {
+  border-bottom-right-radius: 10px;
+}
+
+.result-victory {
+  background-color: rgba(124, 203, 6, 0.76);
+  border-radius: 40px;
+  padding: 5px 20px;
+  box-sizing: border-box;
+}
+
+.result-defeat {
+  background-color: rgba(203, 36, 6, 0.774);
+  border-radius: 40px;
+  padding: 5px 20px;
+  box-sizing: border-box;
+}

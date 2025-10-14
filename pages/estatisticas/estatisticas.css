@@ -10,6 +10,27 @@ body {
   height: 100vh;
 }
 
+.display > * {
+  margin-top: -5rem;
+}
+
+.back-arrow {
+  filter: invert(1);
+  cursor: pointer;
+  transition: 0.2s ease-in-out;
+  width: 2.5rem;
+  height: 2.5rem;
+  margin-left: 1rem;
+  margin-top: 1rem;
+  position: absolute;
+  display: flex;
+}
+
+.back-arrow:hover {
+  transform: scale(1.1);
+}
+
+
 .ranking-section,
 .logs-section {
   display: flex;
@@ -108,89 +129,3 @@ body {
   width: 50px;
 }
 
-.logs-display .title {
-  height: 10%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.logs-display {
-  width: 80%;
-  height: 70%;
-  background-color: rgb(238, 238, 238);
-  border-radius: 10px;
-}
-
-.logs-display .content {
-  overflow: auto;
-  height: 100%;
-  scrollbar-width: 10px;
-  scrollbar-color: #ffffff transparent;
-  background-color: #000000;
-}
-
-.logs-display table {
-  width: 100%;
-}
-
-.logs-display table,
-.logs-display table td,
-.logs-display table th,
-.logs-display table,
-.logs-display tr {
-  border-collapse: collapse;
-  padding: 5px 10px;
-}
-
-.logs-display table tr:nth-child(even) {
-  background-color: #b8b8b8;
-}
-
-.logs-display table tr:nth-child(odd) {
-  background-color: #999999;
-}
-.logs-display tbody tr {
-  border-top: 1px solid black;
-}
-
-.logs-display table td,
-.logs-display table tr {
-  height: 40px;
-  text-align: center;
-}
-
-.logs-display .content table thead th {
-  color: white;
-  position: sticky;
-  top: 0;
-  background-color: #272727;
-}
-
-.logs-display table th:first-child {
-  border-top-left-radius: 10px;
-}
-
-.logs-display table th:last-child {
-  border-top-right-radius: 10px;
-}
-
-.logs-display table tr:last-child td:first-child {
-  border-bottom-left-radius: 10px;
-}
-.logs-display table tr:last-child td:last-child {
-  border-bottom-right-radius: 10px;
-}
-.result-victory {
-  background-color: rgb(124, 203, 6);
-  border-radius: 40px;
-  padding: 5px 20px;
-  box-sizing: border-box;
-}
-
-.result-defeat {
-  background-color: rgb(203, 36, 6);
-  border-radius: 40px;
-  padding: 5px 20px;
-  box-sizing: border-box;
-}
