@@ -1,4 +1,8 @@
-// Dicionário centralizado com imagens e sons
+// ============================================================================
+// SEÇÃO 1: CONFIGURAÇÕES E CONSTANTES
+// ============================================================================
+
+// Dicionário
 const cardDictionary = {
   mario: {
     image: "assets/card_images/bald_mario.png",
@@ -134,9 +138,30 @@ const cardDictionary = {
   },
 };
 
+// Configuração de tempo
+const timeByTableSize = {
+  2: 25, // 25 segundos
+  4: 90, //  1 minuto e meio
+  6: 240, // 4 minutos
+  8: 360, // 6 minutos
+};
+
+// Configuração de largura do tabuleiro por tamanho
+const tableWidth = {
+  2: 230,
+  4: 420,
+  6: 620,
+  8: 800,
+};
+
+// URL base para os sons
 const pathSound = "https://www.myinstants.com/media/sounds/";
 
-// HTML elements
+// -------------------------------------------------------------------------
+// SEÇÃO 2: VARIÁVEIS GLOBAIS E ELEMENTOS DOM
+// ----------------------------------------------------------------------------
+
+// Elementos HTML
 const btnJoker = document.querySelector("#joker-all-cards");
 const btnJokerBackGame = document.querySelector("#joker-back-game");
 const table = document.querySelector(".tabuleiro");
@@ -148,6 +173,7 @@ let isChecking = false;
 let matchedPairs = 0;
 let moves = 0;
 let cardMapping = {}; // Mapeia a imagem para a chave do dicionário
+let areCardsRevealed = false;
 
 // Variáveis do timer
 let timerInterval = null;
@@ -155,28 +181,32 @@ let timerStarted = false;
 let elapsedSeconds = 0; // Para modalidade clássica
 let remainingSeconds = 0; // Para modalidade contra o tempo
 
-// Configuração de tempo para cada tamanho de tabuleiro (em segundos)
-const timeByTableSize = {
-  2: 25, // 25 segundos
-  4: 90, //  1 minuto e meio
-  6: 240, // 4 minutos
-  8: 360, // 6 minutos
-};
+// -------------------------------------------------------------------------
+// SEÇÃO 3: FUNÇÕES DE TIMER
+// -------------------------------------------------------------------------
 
-// Funções do timer
+/**
+ * Formata segundos em formato MM:SS
+ * @param {number} seconds - Segundos a formatar
+ * @returns {string} Tempo formatado (ex: "02:35")
+ */
 function formatTime(seconds) {
   const mins = Math.floor(seconds / 60);
   const secs = seconds % 60;
   return `${String(mins).padStart(2, "0")}:${String(secs).padStart(2, "0")}`;
 }
 
+/**
+ * Inicia o timer baseado na modalidade do jogo
+ * - Modo Clássico: Timer crescente
+ * - Modo Contra o Tempo: Timer regressivo
+ */
 function startTimer() {
   if (timerStarted) return; // Evita iniciar o timer múltiplas vezes
 
   timerStarted = true;
 
   if (game.modality === "classica") {
-
     // Modo Clássico: Timer crescente
     const currentTimeEl = document.getElementById("current-time");
     if (!currentTimeEl) return;
@@ -186,7 +216,6 @@ function startTimer() {
       currentTimeEl.textContent = formatTime(elapsedSeconds);
     }, 1000);
   } else if (game.modality === "contra-tempo") {
-
     // Modo Contra o Tempo: Timer regressivo
     const remainingTimeEl = document.getElementById("remaining-time");
     if (!remainingTimeEl) return;
@@ -208,6 +237,9 @@ function startTimer() {
   }
 }
 
+/**
+ * Para o timer atual
+ */
 function stopTimer() {
   if (timerInterval) {
     clearInterval(timerInterval);
@@ -215,6 +247,14 @@ function stopTimer() {
   }
 }
 
+// -------------------------------------------------------------------------
+// SEÇÃO 4: FUNÇÕES DE CONTROLE DO JOGO
+// -------------------------------------------------------------------------
+
+/**
+ * Finaliza o jogo (vitória ou derrota)
+ * @param {boolean} isVictory - true para vitória, false para derrota
+ */
 function endGame(isVictory) {
   stopTimer();
   table.style.pointerEvents = "none"; // Bloqueia o tabuleiro
@@ -236,7 +276,7 @@ function endGame(isVictory) {
       alert("⏰ O tempo acabou! Você perdeu.");
     }
 
-    // Btn Jogar Novamente
+    // Exibe botão "Jogar Novamente"
     const playAgainBtn = document.getElementById("play-again-btn");
     if (playAgainBtn) {
       playAgainBtn.style.display = "block";
@@ -244,6 +284,12 @@ function endGame(isVictory) {
   }, 500);
 }
 
+/**
+ * Reinicia o jogo completamente
+ * - Reseta variáveis
+ * - Limpa o tabuleiro
+ * - Cria novas cartas embaralhadas
+ */
 function resetGame() {
   // Reseta todas as variáveis do jogo
   flippedCards = [];
@@ -300,7 +346,12 @@ function resetGame() {
   }
 }
 
-// Função para obter as cartas embaralhadas
+/**
+ * Gera array de cartas embaralhadas para o jogo
+ * @param {Object} game - Configuração do jogo
+ * @param {Object} dictionary - Dicionário de cartas
+ * @returns {Array} Array de chaves de cartas embaralhadas
+ */
 function getCardImages(game, dictionary) {
   const numberOfPairs = (game.tableSize * game.tableSize) / 2;
   const keys = Object.keys(dictionary);
@@ -317,93 +368,25 @@ function getCardImages(game, dictionary) {
   return pairs.sort(() => Math.random() - 0.5);
 }
 
-const cardKeys = getCardImages(game, cardDictionary);
+// -------------------------------------------------------------------------
+// SEÇÃO 5: FUNÇÕES DE MECÂNICA DAS CARTAS
+// -------------------------------------------------------------------------
 
-let areCardsRevealed = false;
-document.addEventListener("DOMContentLoaded", () => {
-  // Configura a visibilidade dos timers baseado na modalidade
-  const currentTimeContainer =
-    document.getElementById("current-time")?.parentElement;
-  const remainingTimeContainer =
-    document.getElementById("remaining-time")?.parentElement;
-
-  if (game.modality === "classica") {
-    // Modalidade clássica: mostra tempo atual, esconde tempo restante
-    if (currentTimeContainer) currentTimeContainer.style.display = "flex";
-    if (remainingTimeContainer) remainingTimeContainer.style.display = "none";
-  } else if (game.modality === "contra-tempo") {
-    // Modalidade contra o tempo: esconde tempo atual, mostra tempo restante
-    if (currentTimeContainer) currentTimeContainer.style.display = "none";
-    if (remainingTimeContainer) remainingTimeContainer.style.display = "flex";
-  } else {
-    // Outras modalidades: esconde ambos
-    if (currentTimeContainer) currentTimeContainer.style.display = "none";
-    if (remainingTimeContainer) remainingTimeContainer.style.display = "none";
-  }
-
-  btnJoker.addEventListener("click", () => {
-    if (areCardsRevealed) {
-      btnJoker.removeAttribute("disabled");
-      btnJoker.classList.remove("cheat-active");
-      areCardsRevealed = false;
-      backToGame();
-      return;
-    }
-    btnJoker.classList.add("cheat-active");
-    revealAllCards();
-    areCardsRevealed = true;
-  });
-
-  btnJokerBackGame.addEventListener("click", () => {
-    btnJoker.classList.remove("cheat-active");
-    backToGame();
-    areCardsRevealed = false;
-  });
-
-  // Event listener para o botão "Jogar Novamente"
-  const playAgainBtn = document.getElementById("play-again-btn");
-  if (playAgainBtn) {
-    playAgainBtn.addEventListener("click", () => {
-      resetGame();
-    });
-  }
-});
-
-const tableWidth = {
-  2: 230,
-  4: 420,
-  6: 620,
-  8: 800,
-};
-
-table.style.width = `${tableWidth[game.tableSize]}px`;
-
-// Criar as cartas
-for (let i = 0; i < game.tableSize * game.tableSize; i++) {
-  const card = document.createElement("div");
-  const cardKey = cardKeys[i];
-
-  card.classList.add("cards");
-  card.style.width = "80px";
-  card.style.height = "80px";
-
-  // Define a imagem usando o dicionário
-  card.style.backgroundImage = `url('../../${cardDictionary[cardKey].image}')`;
-
-  // Armazena a chave do dicionário no elemento para fácil acesso
-  card.dataset.cardKey = cardKey;
-
-  card.addEventListener("click", () => handleCardClick(card));
-
-  table.appendChild(card);
-}
-
-// Função para verificar se duas cartas são iguais
+/**
+ * Verifica se duas cartas são iguais (formam um par)
+ * @param {HTMLElement} card1 - Primeira carta
+ * @param {HTMLElement} card2 - Segunda carta
+ * @returns {boolean} true se formam par, false caso contrário
+ */
 function checkMatch(card1, card2) {
   return card1.dataset.cardKey === card2.dataset.cardKey;
 }
 
-// Função para fechar cartas após um delay
+/**
+ * Fecha duas cartas após um delay (quando não são um par)
+ * @param {HTMLElement} card1 - Primeira carta
+ * @param {HTMLElement} card2 - Segunda carta
+ */
 function closeCards(card1, card2) {
   setTimeout(() => {
     card1.classList.remove("revealed");
@@ -412,6 +395,11 @@ function closeCards(card1, card2) {
   }, 700);
 }
 
+/**
+ * Marca duas cartas como par encontrado
+ * @param {HTMLElement} card1 - Primeira carta
+ * @param {HTMLElement} card2 - Segunda carta
+ */
 function markAsMatched(card1, card2) {
   setTimeout(() => {
     card1.classList.add("matched");
@@ -434,6 +422,10 @@ function markAsMatched(card1, card2) {
   }, 600);
 }
 
+/**
+ * Gerencia o clique em uma carta (função principal do jogo)
+ * @param {HTMLElement} card - Carta clicada
+ */
 function handleCardClick(card) {
   // Impede cliques na carta
   if (
@@ -444,7 +436,7 @@ function handleCardClick(card) {
     return;
   }
 
-  // Inicia o timer no primeiro clique 
+  // Inicia o timer no primeiro clique
   if (
     !timerStarted &&
     (game.modality === "classica" || game.modality === "contra-tempo")
@@ -477,6 +469,13 @@ function handleCardClick(card) {
   }
 }
 
+// -------------------------------------------------------------------------
+// SEÇÃO 6: FUNÇÕES DE TRAPAÇAS (CHEATS)
+// -------------------------------------------------------------------------
+
+/**
+ * Revela todas as cartas do tabuleiro (trapaça)
+ */
 function revealAllCards() {
   const allCards = document.querySelectorAll(".cards");
   if (!allCards) {
@@ -488,6 +487,9 @@ function revealAllCards() {
   });
 }
 
+/**
+ * Esconde as cartas reveladas pela trapaça (volta ao jogo normal)
+ */
 function backToGame() {
   const allCards = document.querySelectorAll(".cards");
   if (!allCards) {
@@ -498,3 +500,88 @@ function backToGame() {
     card.classList.remove("revealed");
   });
 }
+
+// -------------------------------------------------------------------------
+// SEÇÃO 7: INICIALIZAÇÃO DO JOGO
+// -------------------------------------------------------------------------
+
+// Gera cartas iniciais
+const cardKeys = getCardImages(game, cardDictionary);
+
+// Configura largura do tabuleiro
+table.style.width = `${tableWidth[game.tableSize]}px`;
+
+// Cria as cartas no tabuleiro
+for (let i = 0; i < game.tableSize * game.tableSize; i++) {
+  const card = document.createElement("div");
+  const cardKey = cardKeys[i];
+
+  card.classList.add("cards");
+  card.style.width = "80px";
+  card.style.height = "80px";
+
+  // Define a imagem usando o dicionário
+  card.style.backgroundImage = `url('../../${cardDictionary[cardKey].image}')`;
+
+  // Armazena a chave do dicionário no elemento para fácil acesso
+  card.dataset.cardKey = cardKey;
+
+  card.addEventListener("click", () => handleCardClick(card));
+
+  table.appendChild(card);
+}
+
+// -------------------------------------------------------------------------
+// SEÇÃO 8: EVENT LISTENERS E CONFIGURAÇÕES INICIAIS
+// -------------------------------------------------------------------------
+
+document.addEventListener("DOMContentLoaded", () => {
+  // Configura a visibilidade dos timers baseado na modalidade
+  const currentTimeContainer =
+    document.getElementById("current-time")?.parentElement;
+  const remainingTimeContainer =
+    document.getElementById("remaining-time")?.parentElement;
+
+  if (game.modality === "classica") {
+    // Modalidade clássica: mostra tempo atual, esconde tempo restante
+    if (currentTimeContainer) currentTimeContainer.style.display = "flex";
+    if (remainingTimeContainer) remainingTimeContainer.style.display = "none";
+  } else if (game.modality === "contra-tempo") {
+    // Modalidade contra o tempo: esconde tempo atual, mostra tempo restante
+    if (currentTimeContainer) currentTimeContainer.style.display = "none";
+    if (remainingTimeContainer) remainingTimeContainer.style.display = "flex";
+  } else {
+    // Outras modalidades: esconde ambos
+    if (currentTimeContainer) currentTimeContainer.style.display = "none";
+    if (remainingTimeContainer) remainingTimeContainer.style.display = "none";
+  }
+
+  // Event listener para botão de trapaça "Ver as cartas"
+  btnJoker.addEventListener("click", () => {
+    if (areCardsRevealed) {
+      btnJoker.removeAttribute("disabled");
+      btnJoker.classList.remove("cheat-active");
+      areCardsRevealed = false;
+      backToGame();
+      return;
+    }
+    btnJoker.classList.add("cheat-active");
+    revealAllCards();
+    areCardsRevealed = true;
+  });
+
+  // Event listener para botão de trapaça "Volte ao jogo"
+  btnJokerBackGame.addEventListener("click", () => {
+    btnJoker.classList.remove("cheat-active");
+    backToGame();
+    areCardsRevealed = false;
+  });
+
+  // Event listener para o botão "Jogar Novamente"
+  const playAgainBtn = document.getElementById("play-again-btn");
+  if (playAgainBtn) {
+    playAgainBtn.addEventListener("click", () => {
+      resetGame();
+    });
+  }
+});
