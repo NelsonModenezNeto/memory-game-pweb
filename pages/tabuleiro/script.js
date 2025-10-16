@@ -193,6 +193,7 @@ document.addEventListener("DOMContentLoaded", () => {
 const tableWidth = {
   2: 230,
   4: 420,
+  6: 620,
   8: 800,
 };
 
