@@ -1,10 +1,16 @@
 export class Game {
 
     constructor(props){
+        this.username = props.username;
+        this.password = props.password;
         this.elapsedTime = null;
         this.beginTime = null;
         this.moves = 0;
         this.tableSize = props.tableSize;
+        this.modality = "classica";
+        this.phoneNumber = "";
+        this.email = "";
+        this.suggestedTime = "2-3 minutos";
     }
 
     start(){    

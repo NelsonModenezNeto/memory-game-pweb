@@ -1,4 +1,4 @@
-import { saveGameConfig, loadGameConfig, DEFAULT_GAME_CONFIG } from '../../globals/config.js';
+import { saveGameConfig, loadGameConfig } from '../../globals/config.js';
 
 document.addEventListener('DOMContentLoaded', function() {
   const nextButton = document.getElementById("nextBtn");
@@ -91,9 +91,9 @@ document.addEventListener('DOMContentLoaded', function() {
   const tempoSugerido = document.getElementById('tempo-sugerido');
   
   const temposSugeridos = {
-    '4x4': '2-3 minutos',
-    '6x6': '5-8 minutos', 
-    '8x8': '10-15 minutos'
+    '4': '2-3 minutos',
+    '6': '5-8 minutos', 
+    '8': '10-15 minutos'
   };
   
   // Função para atualizar o tempo sugerido
@@ -121,38 +121,34 @@ document.addEventListener('DOMContentLoaded', function() {
     const config = loadGameConfig();
     
     const inputs = {
-      nome: document.getElementById('nome'),
-      telefone: document.getElementById('telefone'),
+      username: document.getElementById('nome'),
+      phoneNumber: document.getElementById('telefone'),
       email: document.getElementById('email'),
-      senha: document.getElementById('senha')
     };
     
     Object.keys(inputs).forEach(key => {
       if (inputs[key]) inputs[key].value = config[key] || '';
     });
     
-    const dimensaoRadio = document.querySelector(`input[name="dimensoes"][value="${config.dimensoes}"]`);
+    const dimensaoRadio = document.querySelector(`input[name="dimensoes"][value="${config.tableSize}"]`);
     if (dimensaoRadio) {
       dimensaoRadio.checked = true;
       // Atualiza o tempo sugerido após definir a dimensão
       updateTempoSugerido();
     }
     
-    const modalidadeRadio = document.querySelector(`input[name="modalidade"][value="${config.modalidade}"]`);
+    const modalidadeRadio = document.querySelector(`input[name="modalidade"][value="${config.modality}"]`);
     if (modalidadeRadio) modalidadeRadio.checked = true;
   }
 
   function saveCurrentConfig() {
     const config = {
-      nome: document.getElementById('nome')?.value || '',
-      telefone: document.getElementById('telefone')?.value || '',
+      username: document.getElementById('nome')?.value || '',
+      phoneNumber: document.getElementById('telefone')?.value || '',
       email: document.getElementById('email')?.value || '',
-      senha: document.getElementById('senha')?.value || '',
-      dimensoes: document.querySelector('input[name="dimensoes"]:checked')?.value || '4x4',
-      modalidade: document.querySelector('input[name="modalidade"]:checked')?.value || 'classica',
-      tempoSugerido: document.getElementById('tempo-sugerido')?.textContent || '2-3 minutos',
-      tema: 'dark',
-      animacoes: true
+      tableSize: parseInt(document.querySelector('input[name="dimensoes"]:checked')?.value) || 4,
+      modality: document.querySelector('input[name="modalidade"]:checked')?.value || 'classica',
+      suggestedTime: document.getElementById('tempo-sugerido')?.textContent || '2-3 minutos',
     };
     
     saveGameConfig(config);

@@ -1,3 +1,6 @@
+import { Game } from "../../globals/game.js";
+import { saveGameConfig } from '../../globals/config.js'
+
 const selectLogin = document.getElementById('select-login');
 const selectRegister = document.getElementById('select-register');
 const selectLogin2 = document.getElementById('select-login2');
@@ -26,11 +29,31 @@ selectLogin2.addEventListener('click', function () {
 const btnLogin = document.getElementById('login');
 btnLogin.addEventListener('click', function () {
     //Efetuar login
+    let username = document.getElementById('usernameLogin').value
+    let password = document.getElementById('passwordLogin').value
+
+    const game = new Game({
+        username: username,
+        tableSize: 4,
+    });
+
+    saveGameConfig(game)
+
     window.location.href = '/pages/home/home.html';
 })
 
 const btnRegister = document.getElementById('register');
 btnRegister.addEventListener('click', function () {
     //Efetuar Register
+    let username = document.getElementById('usernameRegister').value
+    let password = document.getElementById('passwordRegister').value
+
+    const game = new Game({
+        username: username,
+        tableSize: 4,
+    });
+
+    saveGameConfig(game)
+
     window.location.href = '/pages/home/home.html';
 })
