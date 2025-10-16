@@ -95,7 +95,43 @@ const cardDictionary = {
   "kowalski": {
     image: "assets/card_images/kowalski.png",
     sound: "meme-recruta-relatorio.mp3"
-  }
+  },
+  "apodreca": {
+    image: "assets/card_images/apodreca.png",
+    sound: "greenscreen-wow.mp3"
+  },
+  "baguio_doido": {
+    image: "assets/card_images/baguio_doido.png",
+    sound: "greenscreen-wow.mp3"
+  },
+  "calabreso": {
+    image: "assets/card_images/calabreso.png",
+    sound: "greenscreen-wow.mp3"
+  },
+  "cj": {
+    image: "assets/card_images/cj.png",
+    sound: "greenscreen-wow.mp3"
+  },
+  "confia": {
+    image: "assets/card_images/confia.png",
+    sound: "greenscreen-wow.mp3"
+  },
+  "genius": {
+    image: "assets/card_images/genius.jpg",
+    sound: "greenscreen-wow.mp3"
+  },
+  "la_paloma": {
+    image: "assets/card_images/la_paloma.png",
+    sound: "greenscreen-wow.mp3"
+  },
+  "mao_cena": {
+    image: "assets/card_images/mao_cena.png",
+    sound: "greenscreen-wow.mp3"
+  },
+  "nazare": {
+    image: "assets/card_images/nazare.png",
+    sound: "greenscreen-wow.mp3"
+  },
 };
 
 const pathSound = "https://www.myinstants.com/media/sounds/";
@@ -132,15 +168,25 @@ function getCardImages(game, dictionary) {
 const cardKeys = getCardImages(game, cardDictionary);
 
 // Joker section
+let areCardsRevealed = false;
 document.addEventListener("DOMContentLoaded", () => {
   btnJoker.addEventListener("click", () => {
+    if (areCardsRevealed) {
+      btnJoker.removeAttribute("disabled");
+      btnJoker.classList.remove("cheat-active");
+      areCardsRevealed = false;
+      backToGame();
+      return;
+    }
     btnJoker.classList.add("cheat-active");
     revealAllCards();
+    areCardsRevealed = true;
   });
 
   btnJokerBackGame.addEventListener("click", () => {
     btnJoker.classList.remove("cheat-active");
     backToGame();
+    areCardsRevealed = false;
   });
 });
 

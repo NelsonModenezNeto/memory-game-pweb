@@ -2,8 +2,13 @@
 .logs-section {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
+}
+
+
+
+.logs-section {
+  justify-content: flex-start;
 }
 
 .title {
@@ -26,7 +31,7 @@
   align-items: center;
   overflow: auto;
   overflow-x: hidden;
-  height: 80%;
+  height: 80vh;
 }
 
 .avatar-img {

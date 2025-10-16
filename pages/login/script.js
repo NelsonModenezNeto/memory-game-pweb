@@ -32,6 +32,11 @@ btnLogin.addEventListener('click', function () {
     let username = document.getElementById('usernameLogin').value
     let password = document.getElementById('passwordLogin').value
 
+    if (!username || !password) {
+        alert('Por favor, preencha usuário e senha.');
+        return;
+    }
+
     const game = new Game({
         username: username,
         tableSize: 4,
@@ -47,6 +52,17 @@ btnRegister.addEventListener('click', function () {
     //Efetuar Register
     let username = document.getElementById('usernameRegister').value
     let password = document.getElementById('passwordRegister').value
+    let passwordConfirm = document.getElementById('passwordConfirmRegister').value
+
+    if (!username || !password || !passwordConfirm) {
+        alert('Por favor, preencha todos os campos.');
+        return;
+    }
+
+    if (password !== passwordConfirm) {
+        alert('As senhas não coincidem.');
+        return;
+    }
 
     const game = new Game({
         username: username,
