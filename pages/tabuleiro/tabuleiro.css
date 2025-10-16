@@ -53,6 +53,8 @@
 
 .right-panel {
   justify-content: space-between;
+  width: 200px;
+  height: 200px;
 }
 
 .info-item {
@@ -111,6 +113,20 @@
   font-size: 16px;
   font-weight: 600;
   color: white;
+}
+
+.btn-play-again {
+  margin-top: auto;
+  background: rgba(0, 200, 83, 0.2);
+  border: 2px solid rgba(0, 200, 83, 0.5);
+  transition: all 0.3s ease;
+}
+
+.btn-play-again:hover {
+  background: rgba(0, 200, 83, 0.4);
+  border-color: rgba(0, 200, 83, 0.8);
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 8px 20px rgba(0, 200, 83, 0.3);
 }
 
 .btn.btn-joker.cheat-active::before {
