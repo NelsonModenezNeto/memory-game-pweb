@@ -22,9 +22,11 @@ class AuthController
             return Response::json(["error" => "Todos os campos são obrigatórios"], 400);
         }
 
+        $senha_hash = password_hash('senha', PASSWORD_DEFAULT);
+
         try {
             $stmt = $this->pdo->prepare("INSERT INTO users (nome, email, senha) VALUES (?, ?, ?)");
-            $stmt->execute([$nome, $email, $senha]);
+            $stmt->execute([$nome, $email, $senha_hash]);
             Response::json(["message" => "Usuário cadastrado com sucesso"]);
         } catch (PDOException $e) {
             Response::json(["error" => "Erro ao cadastrar: " . $e->getMessage()], 500);
