@@ -14,6 +14,12 @@ switch ($uri) {
         $controller->register();
         break;
 
+    case '/api/history':
+        require_once __DIR__ . '/../controllers/GameController.php';
+        $controller = GameController::getInstance();
+        $controller->findHistory();
+        break;
+
     default:
         echo json_encode(["error" => "Rota não encontrada"]);
         break;

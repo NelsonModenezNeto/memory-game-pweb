@@ -8,6 +8,8 @@ docker compose up -d
 
 docker exec -it mysql_container mysql -u user -p password db
 
+podman exec -it mysql_container mysql -u user -ppassword db
+
 CREATE TABLE user (
   id INT AUTO_INCREMENT PRIMARY KEY,
   name VARCHAR(100),
