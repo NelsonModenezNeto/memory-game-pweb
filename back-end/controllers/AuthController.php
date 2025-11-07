@@ -1,6 +1,7 @@
 <?php
 require_once __DIR__ . '/../db.php';
 require_once __DIR__ . '/../utils/response.php';
+require_once __DIR__ . '/../domains/User.php';
 
 class AuthController
 {
@@ -14,19 +15,38 @@ class AuthController
     public function register()
     {
         $data = json_decode(file_get_contents("php://input"), true);
-        $nome  = $data['nome'] ?? '';
-        $email = $data['email'] ?? '';
-        $senha = $data['senha'] ?? '';
 
-        if (!$nome || !$email || !$senha) {
+        $name     = $data['name'] ?? '';
+        $birthday = $data['birthday'] ?? '';
+        $phone    = $data['phone'] ?? '';
+        $email    = $data['email'] ?? '';
+        $username = $data['username'] ?? '';
+        $cpf      = $data['cpf'] ?? '';
+        $password = $data['password'] ?? '';
+
+        if (!$name || !$birthday || !$phone || !$email || !$username || !$cpf || !$password) {
             return Response::json(["error" => "Todos os campos são obrigatórios"], 400);
         }
 
-        $senha_hash = password_hash('senha', PASSWORD_DEFAULT);
+        $user = new User($name, $birthday, $phone, $email, $username, $cpf, $password);
+
+        $password_hash = password_hash($user->getPassword(), PASSWORD_DEFAULT);
 
         try {
-            $stmt = $this->pdo->prepare("INSERT INTO users (nome, email, senha) VALUES (?, ?, ?)");
-            $stmt->execute([$nome, $email, $senha_hash]);
+            $stmt = $this->pdo->prepare("
+                INSERT INTO user (name, birthday, phone, email, username, cpf, password)
+                VALUES (?, ?, ?, ?, ?, ?, ?)
+            ");
+            $stmt->execute([
+                $user->getName(),
+                $user->getBirthday(),
+                $user->getPhone(),
+                $user->getEmail(),
+                $user->getUsername(),
+                $user->getCpf(),
+                $password_hash
+            ]);
+
             Response::json(["message" => "Usuário cadastrado com sucesso"]);
         } catch (PDOException $e) {
             Response::json(["error" => "Erro ao cadastrar: " . $e->getMessage()], 500);
@@ -38,21 +58,22 @@ class AuthController
         session_start();
         $data = json_decode(file_get_contents("php://input"), true);
         $email = $data['email'] ?? '';
-        $senha = $data['senha'] ?? '';
+        $password = $data['password'] ?? '';
 
-        $stmt = $this->pdo->prepare("SELECT * FROM users WHERE email = ?");
+        $stmt = $this->pdo->prepare("SELECT * FROM user WHERE email = ?");
         $stmt->execute([$email]);
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        if ($user && password_verify($senha, $user['senha'])) {
+        if ($user && password_verify($password, $user['password'])) {
             $_SESSION['user_id'] = $user['id'];
-            $_SESSION['nome'] = $user['nome'];
+            $_SESSION['name'] = $user['name'];
 
             Response::json([
                 "message" => "Login bem-sucedido",
                 "user" => [
                     "id" => $user['id'],
-                    "nome" => $user['nome'],
+                    "name" => $user['name'],
+                    "phone" => $user['phone'],
                     "email" => $user['email']
                 ]
             ]);

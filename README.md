@@ -8,11 +8,27 @@ docker compose up -d
 
 docker exec -it mysql_container mysql -u user -p password db
 
-CREATE TABLE users (
+CREATE TABLE user (
   id INT AUTO_INCREMENT PRIMARY KEY,
-  nome VARCHAR(100),
-  email VARCHAR(100) UNIQUE,
-  senha VARCHAR(255),
-  criado_em TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+  name VARCHAR(100),
+  birthday TIMESTAMP,
+  phone VARCHAR(20),
+  email VARCHAR(150),
+  username VARCHAR(80) UNIQUE,
+  cpf VARCHAR(30),
+  password VARCHAR(80)
 );
 
+CREATE TABLE game_register (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  player_name VARCHAR(100),
+  player_id INT,
+  dimension INT,
+  mode VARCHAR(20),
+  elapsed_time INT,
+  moves INT,
+  result BOOLEAN,
+  game_date TIMESTAMP,
+
+  FOREIGN KEY (player_id) REFERENCES user(id)
+);
