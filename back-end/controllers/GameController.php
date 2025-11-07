@@ -19,7 +19,24 @@
         }
 
         public function findHistory(){
-            Response::json(["message" => "ok"]);
+            $user_id = 1; // get it from the session
+
+            $stmt = $this->pdo->prepare("
+            SELECT 
+            gr.id, 
+            u.name as player_name, 
+            player_id, 
+            dimension, 
+            mode, 
+            elapsed_time, 
+            moves, 
+            result, 
+            game_date 
+            FROM game_register gr INNER JOIN user u ON u.id = gr.player_id WHERE player_id=?"
+        );
+            $stmt->execute([$user_id]);
+            $registers = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            Response::json(["data" => $registers]);
         }
     }
 

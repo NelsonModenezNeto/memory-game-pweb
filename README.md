@@ -23,7 +23,6 @@ CREATE TABLE user (
 
 CREATE TABLE game_register (
   id INT AUTO_INCREMENT PRIMARY KEY,
-  player_name VARCHAR(100),
   player_id INT,
   dimension INT,
   mode VARCHAR(20),
