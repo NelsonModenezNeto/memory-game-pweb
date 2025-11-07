@@ -19,7 +19,9 @@
         }
 
         public function findHistory(){
-            $user_id = 1; // get it from the session
+            session_start();
+
+            $user_id = $_SESSION["user_id"]; // get it from the session
 
             $stmt = $this->pdo->prepare("
             SELECT 
