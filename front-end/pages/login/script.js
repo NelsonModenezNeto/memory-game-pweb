@@ -27,34 +27,75 @@ selectLogin2.addEventListener('click', function () {
 
 
 const btnLogin = document.getElementById('login');
-btnLogin.addEventListener('click', function () {
-    //Efetuar login
-    let username = document.getElementById('usernameLogin').value
+btnLogin.addEventListener('click', async function () {
+    const API_URL = "http://localhost/memory-game-pweb/back-end"
+
+    let email = document.getElementById('emailLogin').value
     let password = document.getElementById('passwordLogin').value
 
-    if (!username || !password) {
+    if (!email || !password) {
         alert('Por favor, preencha usuário e senha.');
         return;
     }
 
-    const game = new Game({
-        username: username,
-        tableSize: 4,
-    });
+    const body = {
+        email: email,
+        password: password
+    }
 
-    saveGameConfig(game)
 
-    window.location.href = '/pages/home/home.html';
+    const header = {
+        method: 'POST',
+        body: JSON.stringify(body),
+        headers: {
+            'Content-Type': 'application/json',
+        }
+    }
+
+    try {
+
+        const response = await fetch(`${API_URL}/login`, header);
+
+        if (!response.ok) {
+            throw new Error(`Erro na requisição: ${response.status}`);
+        }
+
+        const data = await response.json();
+        console.log(data.user);
+
+        const game = new Game({
+            name: data.user.name,
+            phoneNumber: data.user.phone,
+            email: data.user.email,
+            tableSize: 4,
+        });
+
+        saveGameConfig(game)
+        window.location.href = '/front-end/pages/home/home.html';
+
+    } catch(error)  {
+        console.error('Erro ao logar:', error);
+    }
+
 })
 
 const btnRegister = document.getElementById('register');
-btnRegister.addEventListener('click', function () {
-    //Efetuar Register
+btnRegister.addEventListener('click', async function () {
+
+    const API_URL = "http://localhost/memory-game-pweb/back-end"
+
+    let name = document.getElementById('nameRegister').value
+    let birthdayInput = document.getElementById('birthdayRegister').value
+    let phone = document.getElementById('phoneRegister').value
+    let email = document.getElementById('emailRegister').value
     let username = document.getElementById('usernameRegister').value
+    let cpf = document.getElementById('cpfRegister').value
     let password = document.getElementById('passwordRegister').value
     let passwordConfirm = document.getElementById('passwordConfirmRegister').value
 
-    if (!username || !password || !passwordConfirm) {
+    let birthday = new Date(birthdayInput).toISOString().slice(0, 19).replace('T', ' ');
+
+    if (!name || !birthday || !phone || !email || !username || !cpf || !password || !passwordConfirm) {
         alert('Por favor, preencha todos os campos.');
         return;
     }
@@ -64,12 +105,45 @@ btnRegister.addEventListener('click', function () {
         return;
     }
 
-    const game = new Game({
+    const body = {
+        name: name,
+        birthday: birthday,
+        phone: phone,
+        email: email,
         username: username,
-        tableSize: 4,
-    });
+        cpf: cpf,
+        password: password
+    }
 
-    saveGameConfig(game)
+    const header = {
+        method: 'POST',
+        body: JSON.stringify(body),
+        headers: {
+            'Content-Type': 'application/json',
+        }
+    }
 
-    window.location.href = '/pages/home/home.html';
+    try {
+        const response = await fetch(`${API_URL}/register`, header);
+
+        if (!response.ok) {
+            throw new Error(`Erro na requisição: ${response.status}`);
+        }
+
+        const data = await response.json();
+        console.log(data);
+
+         const game = new Game({
+            name: data.user.name,
+            phoneNumber: data.user.phone,
+            email: data.user.email,
+            tableSize: 4,
+        });
+
+        saveGameConfig(game);
+        window.location.href = '/front-end/pages/home/home.html';
+
+    } catch (error) {
+        console.error('Erro ao registrar:', error);
+    }
 })
