@@ -14,6 +14,21 @@ switch ($uri) {
         $controller->register();
         break;
 
+    case '/memory-game-pweb/back-end/user/profile':
+        require_once __DIR__ . '/../controllers/UserController.php';
+        $controller = new UserController();
+        $method = $_SERVER['REQUEST_METHOD'] ?? 'GET';
+
+        if ($method === 'GET') {
+            $controller->getProfile();
+        } elseif ($method === 'PUT' || $method === 'POST') {
+            $controller->updateProfile();
+        } else {
+            http_response_code(405);
+            echo json_encode(["error" => "Método não permitido"]);
+        }
+        break;
+
     case '/api/history':
         require_once __DIR__ . '/../controllers/GameController.php';
         $controller = GameController::getInstance();
