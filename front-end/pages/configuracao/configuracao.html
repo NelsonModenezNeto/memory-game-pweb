@@ -13,7 +13,7 @@
       <a href="../home/home.html">
         <img id="back-arrow" class="back-arrow" src="../../assets/back-arrow.png" alt="Voltar">
       </a>
-      <span class="title">Configurações</span>
+      <span class="title">Configurações de Jogo</span>
     </div>
     
     <form class="config-form">
@@ -23,44 +23,8 @@
         <div class="carousel-item">
           <!-- Slides do carrossel -->
           <div class="carousel-wrapper">
-            <!-- Card 1: Informações do Usuário -->
+            <!-- Card 1: Configurações da Partida -->
             <div class="carousel-slide active">
-              <div class="card">
-                <div class="card-header">
-                  <h2>👤 Informações do Usuário</h2>
-                  <p>Gerencie seus dados pessoais</p>
-                </div>
-                <div class="card-content">
-                  <div class="field-group">
-                    <label for="nome">Nome Completo</label>
-                    <input type="text" id="nome" name="nome" required>
-                  </div>
-                  
-                  <div class="field-group">
-                    <label for="telefone">Telefone</label>
-                    <input type="tel" id="telefone" name="telefone">
-                  </div>
-                  
-                  <div class="field-group">
-                    <label for="email">Email</label>
-                    <input type="email" id="email" name="email" required>
-                  </div>
-                  
-                  <div class="field-group">
-                    <label for="senha">Nova Senha</label>
-                    <input type="password" id="senha" name="senha">
-                  </div>
-                  
-                  <div class="field-group">
-                    <label for="confirmar-senha">Confirmar Nova Senha</label>
-                    <input type="password" id="confirmar-senha" name="confirmar-senha">
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Card 2: Configurações da Partida -->
-            <div class="carousel-slide">
               <div class="card">
                 <div class="card-header">
                   <h2>🎮 Configurações da Partida</h2>
@@ -99,10 +63,6 @@
                       <label class="radio-option">
                         <input type="radio" name="modalidade" value="contra-tempo">
                         <span>Contra o Tempo</span>
-                      </label>
-                      <label class="radio-option">
-                        <input type="radio" name="modalidade" value="vidas-limitadas">
-                        <span>Vidas Limitadas</span>
                       </label>
                     </div>
                   </div>
@@ -149,7 +109,6 @@
           <div class="carousel-dots">
             <div class="dot active" data-slide="0"></div>
             <div class="dot" data-slide="1"></div>
-            <div class="dot" data-slide="2"></div>
           </div>
         </div>
 

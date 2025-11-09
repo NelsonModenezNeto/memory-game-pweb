@@ -29,3 +29,4 @@ export function rankingCardComponent(props) {
 
   rankingContent.appendChild(card);
 }
+

@@ -56,3 +56,4 @@ sorted.forEach((player, index) => {
       ...player,
     })
 });
+

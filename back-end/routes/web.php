@@ -35,6 +35,21 @@ switch ($uri) {
         $controller->findHistory();
         break;
 
+    case '/memory-game-pweb/back-end/game/config':
+        require_once __DIR__ . '/../controllers/GameController.php';
+        $controller = GameController::getInstance();
+        $method = $_SERVER['REQUEST_METHOD'] ?? 'GET';
+
+        if ($method === 'GET') {
+            $controller->getGameConfig();
+        } elseif ($method === 'POST' || $method === 'PUT') {
+            $controller->saveGameConfig();
+        } else {
+            http_response_code(405);
+            echo json_encode(["error" => "Método não permitido"]);
+        }
+        break;
+
     default:
         echo json_encode(["error" => "Rota não encontrada"]);
         break;

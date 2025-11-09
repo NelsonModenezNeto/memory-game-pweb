@@ -1,4 +1,4 @@
-import { saveGameConfig, loadGameConfig } from '../../globals/config.js';
+import { saveGameConfig, loadGameConfig, saveGameConfigToServer, loadGameConfigFromServer } from '../../globals/config.js';
 
 document.addEventListener('DOMContentLoaded', function() {
   const nextButton = document.getElementById("nextBtn");
@@ -117,54 +117,64 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
 
-  function loadSavedConfig() {
-    const config = loadGameConfig();
+  async function loadSavedConfig() {
+    // Primeiro tenta carregar do servidor
+    let serverConfig = await loadGameConfigFromServer();
     
-    const inputs = {
-      username: document.getElementById('nome'),
-      phoneNumber: document.getElementById('telefone'),
-      email: document.getElementById('email'),
+    // Se não conseguir do servidor, usa localStorage como fallback
+    const localConfig = loadGameConfig() || {};
+    
+    // Prioriza configurações do servidor, mas usa localStorage como fallback
+    const config = {
+      ...localConfig,
+      ...(serverConfig ? {
+        tableSize: serverConfig.dimension,
+        modality: serverConfig.modality
+      } : {})
     };
     
-    Object.keys(inputs).forEach(key => {
-      if (inputs[key]) inputs[key].value = config[key] || '';
-    });
-    
-    const dimensaoRadio = document.querySelector(`input[name="dimensoes"][value="${config.tableSize}"]`);
+    const dimensaoRadio = document.querySelector(`input[name="dimensoes"][value="${config.tableSize || 4}"]`);
     if (dimensaoRadio) {
       dimensaoRadio.checked = true;
       // Atualiza o tempo sugerido após definir a dimensão
       updateTempoSugerido();
     }
     
-    const modalidadeRadio = document.querySelector(`input[name="modalidade"][value="${config.modality}"]`);
+    const modalidadeRadio = document.querySelector(`input[name="modalidade"][value="${config.modality || 'classica'}"]`);
     if (modalidadeRadio) modalidadeRadio.checked = true;
   }
 
-  function saveCurrentConfig() {
+  async function saveCurrentConfig() {
     const config = {
-      username: document.getElementById('nome')?.value || '',
-      phoneNumber: document.getElementById('telefone')?.value || '',
-      email: document.getElementById('email')?.value || '',
       tableSize: parseInt(document.querySelector('input[name="dimensoes"]:checked')?.value) || 4,
       modality: document.querySelector('input[name="modalidade"]:checked')?.value || 'classica',
       suggestedTime: document.getElementById('tempo-sugerido')?.textContent || '2-3 minutos',
     };
     
+    // Salva no localStorage (cache/fallback)
     saveGameConfig(config);
+    
+    // Salva configurações de jogo no servidor
+    const gameConfig = {
+      dimension: config.tableSize,
+      modality: config.modality
+    };
+    
+    try {
+      await saveGameConfigToServer(gameConfig);
+    } catch (error) {
+      console.error('Erro ao salvar no servidor (usando cache local):', error);
+    }
   }
 
   // Inicialização e event listeners
   loadSavedConfig();
 
-  const formInputs = document.querySelectorAll('input[type="text"], input[type="email"], input[type="tel"], input[type="password"]');
-  formInputs.forEach(input => input.addEventListener('input', saveCurrentConfig));
-
   const saveButton = document.querySelector('button[type="submit"]');
   if (saveButton) {
-    saveButton.addEventListener('click', function(e) {
+    saveButton.addEventListener('click', async function(e) {
       e.preventDefault();
-      saveCurrentConfig();
+      await saveCurrentConfig();
       alert('Configurações salvas com sucesso!');
     });
   }
