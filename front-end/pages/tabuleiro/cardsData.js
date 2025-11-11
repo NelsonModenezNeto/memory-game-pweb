@@ -33,7 +33,7 @@ export const cardDictionary = {
   },
   heisenberg: {
     image: "assets/card_images/breaking_bad.png",
-    sound: "say-my-name-heisenbarg.mp3",
+    sound: "heisenberg-youre-goddamn-right-walter-white-say-my-name-breaking-bad-season-5.mp3",
   },
   pix: {
     image: "assets/card_images/pix.png",

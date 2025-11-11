@@ -84,7 +84,7 @@ class GameController {
 
         $gameType = $data['gameType'] ?? null;           
         $tableSize = $data['tableSize'] ?? null;        
-        $elapsedTime = $data['elapsedTime'] ?? null;     
+        $elapsedTime = $data['elapsedTime'];     
         $moves = $data['moves'] ?? null;                 
         $resultStatus = $data['resultStatus'] ?? null;   
         $dateISO = $data['date'] ?? null;    
@@ -100,10 +100,6 @@ class GameController {
             $date = date('Y-m-d H:i:s');
         }
 
-        if (!$gameType || !$tableSize || !$elapsedTime || !$moves || !$resultStatus) {
-            Response::json(["error" => "Todos os campos são obrigatórios"], 400);
-            return;
-        }
         try {
             $stmt = $this->pdo->prepare("
                 INSERT INTO game_register (player_id, dimension, mode, elapsed_time, moves, result, game_date) 

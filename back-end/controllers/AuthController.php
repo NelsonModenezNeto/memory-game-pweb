@@ -14,6 +14,7 @@ class AuthController
 
     public function register()
     {
+        session_start();
         $data = json_decode(file_get_contents("php://input"), true);
 
         $name     = $data['name'] ?? '';
@@ -47,7 +48,24 @@ class AuthController
                 $password_hash
             ]);
 
-            Response::json(["message" => "Usuário cadastrado com sucesso"]);
+            $stmt = $this->pdo->prepare("SELECT * FROM user WHERE email = ?");
+            $stmt->execute([$email]);
+            $user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+            if ($user && password_verify($password, $user['password'])) {
+                $_SESSION['user_id'] = $user['id'];
+                $_SESSION['name'] = $user['name'];
+
+                Response::json([
+                    "message" => "Register bem-sucedido",
+                    "user" => [
+                        "id" => $user['id'],
+                        "name" => $user['name'],
+                        "phone" => $user['phone'],
+                        "email" => $user['email']
+                    ]
+                ]);
+            }
         } catch (PDOException $e) {
             Response::json(["error" => "Erro ao cadastrar: " . $e->getMessage()], 500);
         }

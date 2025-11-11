@@ -10,9 +10,9 @@ export function logRegister({
 }) {
   const logsDisplay = document.querySelector(".logs-display table tbody");
 
-  const result = resultStatus == "victory" ? "Vitória" : "Derrota";
+  const result = resultStatus ? "Vitória" : "Derrota";
   const resultStyle =
-    resultStatus == "victory" ? "result-victory" : "result-defeat";
+    resultStatus ? "result-victory" : "result-defeat";
 
   const register = document.createElement("tr");
   register.innerHTML = `
@@ -53,11 +53,15 @@ function formatCustomDateTime(isoString) {
 }
 
 export async function saveGame(gameData) {
+  
   console.log(gameData);
+
+  const elapsedTime = gameData.game.modality == 'classico' ? gameData.elapsedSeconds : gameData.remainingSeconds
+
   const body = JSON.stringify({
     gameType: gameData.game.modality,
     tableSize: gameData.game.tableSize,
-    elapsedTime: gameData.elapsedSeconds,
+    elapsedTime: elapsedTime,
     moves: gameData.moves,
     resultStatus: gameData.resultStatus,
     date: new Date().toISOString()
