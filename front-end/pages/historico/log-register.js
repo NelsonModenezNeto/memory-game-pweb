@@ -51,3 +51,27 @@ function formatCustomDateTime(isoString) {
 
   return `${day}-${month}-${year} ${hours}h${minutes}`;
 }
+
+export async function saveGame(gameData) {
+  console.log(gameData);
+  const body = JSON.stringify({
+    gameType: gameData.game.modality,
+    tableSize: gameData.game.tableSize,
+    elapsedTime: gameData.elapsedSeconds,
+    moves: gameData.moves,
+    resultStatus: gameData.resultStatus,
+    date: new Date().toISOString()
+  })
+  console.log(body);
+  const response = await fetch('/memory-game-pweb/back-end/api/history', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: body
+  });
+  
+  const result = await response.json();
+  console.log(result)
+  // if (result.data) {
+  //   logRegister(result.data);
+  // }
+}

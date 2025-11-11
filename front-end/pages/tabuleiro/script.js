@@ -1,3 +1,4 @@
+import { logRegister, saveGame } from "../historico/log-register.js";
 import { cardDictionary } from "./cardsData.js";
 // ============================================================================
 // SEÇÃO 1: CONFIGURAÇÕES E CONSTANTES
@@ -146,6 +147,13 @@ function endGame(isVictory) {
       alert("⏰ O tempo acabou! Você perdeu.");
     }
 
+    const resultStatus = isVictory ? 1 : 0;
+    const gameRegister = {game, timerInterval, timerStarted, moves, elapsedSeconds, remainingSeconds, resultStatus};
+    try {
+      saveGame(gameRegister);
+    } catch (error) {
+      console.log(error)
+    }
     // Exibe botão "Jogar Novamente"
     const playAgainBtn = document.getElementById("play-again-btn");
     if (playAgainBtn) {

@@ -71,7 +71,7 @@ btnLogin.addEventListener('click', async function () {
         });
 
         saveGameConfig(game)
-        window.location.href = '/front-end/pages/home/home.html';
+        window.location.href = 'http://localhost/memory-game-pweb/front-end/pages/home/home.html';
 
     } catch(error)  {
         console.error('Erro ao logar:', error);

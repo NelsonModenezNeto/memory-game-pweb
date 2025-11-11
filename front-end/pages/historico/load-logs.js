@@ -1,5 +1,4 @@
 import { logRegister } from "./log-register.js";
-
 const logs = [
   {
     gameId: 1,
@@ -186,3 +185,23 @@ const logs = [
 logs.forEach(log => {
     logRegister(log);
 })
+// async function loadHistory() {
+//   try {
+//     const response = await fetch('/memory-game-pweb/back-end/api/history');
+//     const result = await response.json();
+//     console.log(result.data)
+//     if (result.data) {
+//       result.data.forEach(game => logRegister(game));
+//     }
+    
+//   } catch (error) {
+    
+//   }
+// }
+
+// function print () {
+//   console.log("teste");
+// }
+
+// print();
+// loadHistory();
