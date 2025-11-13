@@ -48,7 +48,19 @@ switch ($uri) {
         }
         break;
 
-    // case '/'
+    case '/memory-game-pweb/back-end/api/history/all':
+        $method = $_SERVER['REQUEST_METHOD'] ?? 'GET';
+        require_once __DIR__ . '/../controllers/GameController.php';
+
+        if ($method === 'GET') {
+            http_response_code(200); 
+            $controller = GameController::getInstance();
+            $controller->getAllHistory();
+        } else {
+            http_response_code(405);
+            echo json_encode(["error" => "Método não permitido"]);
+        }
+        break;
 
     case '/memory-game-pweb/back-end/game/config':
         require_once __DIR__ . '/../controllers/GameController.php';
@@ -59,6 +71,19 @@ switch ($uri) {
             $controller->getGameConfig();
         } elseif ($method === 'POST' || $method === 'PUT') {
             $controller->saveGameConfig();
+        } else {
+            http_response_code(405);
+            echo json_encode(["error" => "Método não permitido"]);
+        }
+        break;
+
+    case '/memory-game-pweb/back-end/ranking':
+        require_once __DIR__ . '/../controllers/GameController.php';
+        $controller = GameController::getInstance();
+        $method = $_SERVER['REQUEST_METHOD'] ?? 'GET';
+
+        if ($method === 'GET') {
+            $controller->getRanking();
         } else {
             http_response_code(405);
             echo json_encode(["error" => "Método não permitido"]);

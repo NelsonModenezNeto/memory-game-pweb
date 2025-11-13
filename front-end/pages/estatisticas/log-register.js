@@ -24,7 +24,7 @@ export function logRegister({
         <td>${gameType}</td>
         <td>${moves}</td>
         <td>${formatTime(elapsedTime)}</td>
-        <td>${formatCustomDateTime((new Date()).toISOString())}</td>
+        <td>${formatCustomDateTime(date)}</td>
     </tr>`;
 
   console.log("before append");

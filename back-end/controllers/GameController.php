@@ -62,6 +62,49 @@ class GameController {
         }
     }
 
+    public function getAllHistory(){
+        try {
+            $stmt = $this->pdo->prepare("
+                SELECT 
+                    gr.id as gameId,
+                    u.name as playerName,
+                    gr.result as resultStatus,
+                    gr.moves,
+                    gr.elapsed_time as elapsedTime,
+                    gr.game_date as date,
+                    gr.dimension as tableSize,
+                    gr.mode as gameType
+                FROM game_register gr 
+                INNER JOIN user u ON u.id = gr.player_id 
+                ORDER BY gr.game_date DESC
+            ");
+            $stmt->execute();
+            $registers = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+            foreach ($registers as &$register) {
+                // Converte result (boolean) para string (victory/defeat)
+                $register['resultStatus'] = $register['resultStatus'] == 1 || $register['resultStatus'] === true ? 'victory' : 'defeat';
+                
+                // Converte tipos
+                $register['gameId'] = (int) $register['gameId'];
+                $register['moves'] = (int) $register['moves'];
+                $register['elapsedTime'] = (int) $register['elapsedTime'];
+                $register['tableSize'] = (int) $register['tableSize'];
+                
+                // Formata gameType para exibição
+                if ($register['gameType'] === 'classica') {
+                    $register['gameType'] = 'Clássico';
+                } elseif ($register['gameType'] === 'contra-tempo') {
+                    $register['gameType'] = 'Contra o tempo';
+                }
+            }
+
+            Response::json(["data" => $registers]);
+        } catch (PDOException $e) {
+            Response::json(["error" => "Erro ao buscar histórico: " . $e->getMessage()], 500);
+        }
+    }
+
 
     public function addHistory(){
         if (session_status() !== PHP_SESSION_ACTIVE) {
@@ -234,6 +277,59 @@ class GameController {
             }
         } catch (PDOException $e) {
             Response::json(["error" => "Erro ao buscar configurações: " . $e->getMessage()], 500);
+        }
+    }
+
+    public function getRanking(){
+        try {
+            // Busca os top 10 jogadores baseado em:
+            // 1. Partidas vencidas nos maiores tabuleiros
+            // 2. Em caso de empate, priorizar menos jogadas
+            $stmt = $this->pdo->prepare("
+                SELECT 
+                    u.id,
+                    u.username,
+                    u.name,
+                    COUNT(gr.id) as victories,
+                    MAX(gr.dimension) as max_dimension,
+                    MIN(gr.moves) as best_moves,
+                    AVG(gr.dimension) as avg_dimension
+                FROM user u
+                INNER JOIN game_register gr ON gr.player_id = u.id
+                WHERE gr.result = 1
+                GROUP BY u.id, u.username, u.name
+                ORDER BY 
+                    MAX(gr.dimension) DESC,
+                    MIN(gr.moves) ASC,
+                    COUNT(gr.id) DESC
+                LIMIT 10
+            ");
+            $stmt->execute();
+            $ranking = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+            // Calcula pontos baseado nas vitórias e dimensões
+            $players = [];
+            foreach ($ranking as $index => $player) {
+                // Pontuação: vitórias * dimensão máxima * 100 + bônus por menos jogadas
+                $points = (int) $player['victories'] * (int) $player['max_dimension'] * 100;
+                if ($player['best_moves'] > 0) {
+                    $points += (1000 / (int) $player['best_moves']); // Bônus por eficiência
+                }
+
+                $players[] = [
+                    'id' => (int) $player['id'],
+                    'username' => $player['username'],
+                    'name' => $player['name'],
+                    'points' => (int) $points,
+                    'victories' => (int) $player['victories'],
+                    'max_dimension' => (int) $player['max_dimension'],
+                    'best_moves' => (int) $player['best_moves']
+                ];
+            }
+
+            Response::json(["data" => $players]);
+        } catch (PDOException $e) {
+            Response::json(["error" => "Erro ao buscar ranking: " . $e->getMessage()], 500);
         }
     }
 }
