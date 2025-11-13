@@ -199,9 +199,4 @@ async function loadHistory() {
   }
 }
 
-function print () {
-  console.log("teste");
-}
-
-print();
 loadHistory();

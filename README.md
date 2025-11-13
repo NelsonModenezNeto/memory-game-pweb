@@ -3,6 +3,15 @@
 https://dribbble.com/shots/25079344-Gamedev-Showcase-Title-Screen
 
 ## Execução do Projeto
+Se utilizar no xampp coloque i diretorio do memory-game-pweb inteiro no htdocs do XAMPP
+.env para o XAMPP
+DB_HOST = localhost
+DB_NAME = db
+DB_USER = root
+DB_PASS = 
+PORT = 3306
+
+Obs: não colocar em outras paths, pois muito do codigos utilizam URLs absolutos, como para acessar o backend.
 
 docker compose up -d
 

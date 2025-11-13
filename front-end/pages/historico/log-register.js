@@ -54,10 +54,10 @@ function formatCustomDateTime(isoString) {
 
 export async function saveGame(gameData) {
   
-  console.log(gameData);
+  // console.log(gameData);
 
-  const elapsedTime = gameData.game.modality == 'classico' ? gameData.elapsedSeconds : gameData.remainingSeconds
-
+  const elapsedTime = gameData.game.modality == 'classica' ? gameData.elapsedSeconds : gameData.remainingSeconds
+  console.log(gameData.game.modality)
   const body = JSON.stringify({
     gameType: gameData.game.modality,
     tableSize: gameData.game.tableSize,
@@ -74,8 +74,5 @@ export async function saveGame(gameData) {
   });
   
   const result = await response.json();
-  console.log(result)
-  // if (result.data) {
-  //   logRegister(result.data);
-  // }
+  // console.log(result)
 }
